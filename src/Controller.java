@@ -1,3 +1,4 @@
+import CRUD.ClientCRUD;
 import CRUD.CompanyCRUD;
 import CRUD.TransportCRUD;
 
@@ -30,7 +31,8 @@ public class Controller {
             }
 
             if(command == 2 ){
-
+                ClientCRUD clientCRUD = new ClientCRUD();
+                clientCRUD.start();
             }
 
             if(command == 3 ){
