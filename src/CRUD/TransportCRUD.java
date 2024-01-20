@@ -40,30 +40,29 @@ public class TransportCRUD {
             System.out.print("Въведете начална точка:");
             String start_point = scanner.nextLine();
 
-            System.out.print("Enter ending point: ");
+            System.out.print("Въведете крайна точка: ");
             String end_point = scanner.nextLine();
 
-            System.out.print("Enter departure date (in the format dd.MM.yyyy): ");
+            System.out.print("Въведете дата на отпътуване (във формат dd.MM.yyyy): ");
             String dep_date_str = scanner.nextLine();
 
             Date departure_date = new SimpleDateFormat("dd.MM.yyyy").parse(dep_date_str);
 
-            System.out.print("Enter arrival date (in the format dd.MM.yyyy): ");
+            System.out.print("Въведете дата на пристигане (във формат dd.MM.yyyy): ");
             String arr_date_str = scanner.nextLine();
 
             Date arrival_date = new SimpleDateFormat("dd.MM.yyyy").parse(arr_date_str);
 
-            System.out.print("Enter cargo type: ");
+            System.out.print("Въведете вид на товара: ");
             String cargo_type = scanner.nextLine();
 
-            System.out.print("Enter total weight: ");
+            System.out.print("Въведете общо тегло: ");
             double total_weight = scanner.nextDouble();
 
-            System.out.print("Enter passenger count: ");
+            System.out.print("Въведете брой пътници: ");
             int passenger_count = scanner.nextInt();
 
-            System.out.println("Избере ИТ кой");
-            System.out.print("Enter employee ID: ");
+            System.out.println("Избере ИД на работника");
             int employee_id = scanner.nextInt();
 
             Transport transport = new Transport(
@@ -80,7 +79,7 @@ public class TransportCRUD {
             boolean isAdded = repositoryTransport.insertTransport(transport);
 
             if(isAdded){
-                System.out.println("УСПЕШНО ДОБАВИХТЕ КЛИЕНТ !");
+                System.out.println("УСПЕШНО ДОБАВИХТЕ ТРАНСПОРТ !");
             }else {
                 System.out.println("ГРЕШКА ПРИ ДОБАВЯНЕ");
             }

@@ -2,8 +2,10 @@ package CRUD;
 
 import DB.RepositoryClient;
 import DB.RepositoryCompany;
+import DB.RepositoryEmploy;
 import MODELS.Client;
 import MODELS.Company;
+import MODELS.Employ;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,13 +14,16 @@ public class CompanyCRUD {
     Scanner scanner;
     RepositoryCompany repositoryCompany;
     RepositoryClient repositoryClient;
+    RepositoryEmploy repositoryEmploy;
     public CompanyCRUD()  throws Exception{
         this.scanner = new Scanner(System.in);
         this.repositoryCompany = new RepositoryCompany();
         this.repositoryClient = new RepositoryClient();
+        this.repositoryEmploy = new RepositoryEmploy();
     }
 
     public void menu(){
+        System.out.println();
         System.out.println("--- Въвеждане, редактиране и изтриване на конпания ---");
         System.out.println("1. Добавяне на компания");
         System.out.println("2. Редактиране на компания");
@@ -26,6 +31,7 @@ public class CompanyCRUD {
         System.out.println("4. Преглед на всички компании");
         System.out.println("5. Подробна информация на компания");
         System.out.println("6. Изход");
+        System.out.println();
     }
 
     public void start() throws Exception{
@@ -139,6 +145,17 @@ public class CompanyCRUD {
             result += "   - ID: " + clients.get(i).getId() + " NAME: " + clients.get(i).getName_client();
             result += "\n";
         }
+
+        result += "\n";
+        result += " -- РАБОТНИЦИ НА КОМПАНИЯТА: ";
+        result += "\n";
+
+        ArrayList<Employ> employs =  this.repositoryEmploy.getEmploiesOnCompany(id);
+        for (int i = 0; i < employs.size(); i++) {
+            result += "   - ID: " + employs.get(i).getId() + " NAME: " + employs.get(i).getName();
+            result += "\n";
+        }
+
         return result;
     }
 }

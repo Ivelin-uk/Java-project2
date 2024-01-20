@@ -21,12 +21,14 @@ public class ClientCRUD {
     }
 
     public void menu(){
+        System.out.println();
         System.out.println("--- Въвеждане, редактиране и изтриване на клиентите на транспортната компания ---");
         System.out.println("1. Добавяне на клиент");
         System.out.println("2. Редактиране на клиент");
         System.out.println("3. Изтриване на клиент");
         System.out.println("4. Прегрлед на всички клиенти");
         System.out.println("5. Изход");
+        System.out.println();
     }
     //command 1
     public void start() throws Exception{
@@ -68,7 +70,7 @@ public class ClientCRUD {
             companyCRUD.showAllCompanies();
             System.out.print("Въведете ИД на компанията: ");
             String company_id = this.scanner.nextLine();
-            System.out.print("ИМЕ НА КЛЕИНТА: ");
+            System.out.print("Име на клиента: ");
             String company_name = this.scanner.nextLine();
 
             Client client = new Client(company_id, company_name);
@@ -114,7 +116,7 @@ public class ClientCRUD {
 
 
     public void deleteClient() throws Exception{
-        System.out.println("!!!!!!! Изтриване на компания !!!!!!!");
+        System.out.println("!!!!!!! Изтриване на клиент !!!!!!!");
         this.showAllClient();
         System.out.print("Въведете ИД на клиента: ");
         String client_id = this.scanner.nextLine();

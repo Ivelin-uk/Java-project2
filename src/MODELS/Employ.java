@@ -6,6 +6,9 @@ public class Employ {
     private String name;
     private String company_id;
 
+    public Employ(){
+
+    }
     public Employ(String id, String name, String company_id) {
         this.id = id;
         this.name = name;
