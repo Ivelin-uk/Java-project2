@@ -1,15 +1,16 @@
 import CRUD.ClientCRUD;
 import CRUD.CompanyCRUD;
+import CRUD.EmployCRUD;
 import CRUD.TransportCRUD;
 
 import java.util.Scanner;
-public class Controller {
+public class ControllerCRUD {
     Scanner scanner = new Scanner(System.in);
 
     public void menu(){
-        System.out.println("-------------------------------------------");
-        System.out.println("---------  COMPANY MENU  ------------------");
-        System.out.println("-------------------------------------------");
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println("------------ COMPANY MENU (редактиране и изтриване) ---------------");
+        System.out.println("--------------------------------------------------------------------");
         System.out.println("1. Въвеждане, редактиране и изтриване на конпания");
         System.out.println("2. Въвеждане, редактиране и изтриване на клиентите на транспортната компания");
         System.out.println("3. Въвеждане, редактиране и изтриване на превозните средства, които са собственост на компанията");
@@ -40,7 +41,8 @@ public class Controller {
             }
 
             if(command == 4 ){
-
+                EmployCRUD employCRUD = new EmployCRUD();
+                employCRUD.start();
             }
 
             if(command == 5 ){

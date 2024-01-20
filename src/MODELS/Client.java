@@ -13,11 +13,11 @@ public class Client {
         this.setName_client(name_client);
     }
 
-    public Client(String id, String name_client, String isDebtor, String company_id) {
-        this.id = id;
-        this.name_client = name_client;
-        this.isDebtor = isDebtor;
-        this.company_id = company_id;
+    public Client(String id, String name_client, String isDebtor, String company_id) throws Exception {
+        this.setId(id);
+        this.setName_client(name_client);
+        this.setIsDebtor(isDebtor);
+        this.setCompany_id(company_id);
     }
 
     public String getCompany_id() {
@@ -41,10 +41,9 @@ public class Client {
 
     public void setId(String id) throws Exception {
         if("".equals(id)){
-            throw new Exception("ID can not be empty string !");
-        }else{
-            this.id = id;
+            throw new Exception("Въведерте ИД");
         }
+        this.id = id;
     }
 
     public String getName_client() {
@@ -54,18 +53,20 @@ public class Client {
     public void setName_client(String name_client) throws Exception {
         if(name_client.length() < 3){
             throw new Exception("Length cannot be less than 3 characters");
-        }else{
-            this.name_client = name_client;
         }
+
+        this.name_client = name_client;
     }
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id='" + id + '\'' +
-                ", name_client='" + name_client + '\'' +
-                ", isDebtor='" + isDebtor + '\'' +
-                ", company_id='" + company_id + '\'' +
-                '}';
+        String r = "КЛИЕНТ - ИД: [ " + id + " ] ИМЕ НА КЛИЕНТА: " + name_client;
+        if(Integer.parseInt(isDebtor) == 1){
+            r += " ДЛЪЖНИК: да ";
+        }else {
+            r += " ДЛЪЖНИК: не ";
+        }
+
+        return r;
     }
 }

@@ -7,6 +7,7 @@ import DB.RepositoryEmploy;
 import MODELS.Client;
 import MODELS.Employ;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,7 +27,7 @@ public class EmployCRUD {
 
     public void menu(){
         System.out.println();
-        System.out.println("--- Въвеждане, редактиране и изтриване на клиентите на транспортната компания ---");
+        System.out.println("--- Въвеждане, редактиране и изтриване на работниците на транспортната компания ---");
         System.out.println("1. Добавяне на работник");
         System.out.println("2. Редактиране на работник");
         System.out.println("3. Изтриване на работник");
@@ -54,6 +55,7 @@ public class EmployCRUD {
             }
 
             if(command == 4){
+                System.out.println("D");
                 this.showAllEmploy();
             }
 
@@ -77,9 +79,9 @@ public class EmployCRUD {
             System.out.print("Име на работник: ");
             String company_name = this.scanner.nextLine();
 
-            Client client = new Client(company_id, company_name);
+            Employ employ = new Employ(company_name, company_id);
 
-            boolean isAdded = repositoryClient.insertClient(client);
+            boolean isAdded = repositoryEmploy.insertEmploy(employ);
 
             if (isAdded) {
                 System.out.println("УСПЕШНО ДОБАВИХТЕ РАБОТНИК !");
@@ -92,28 +94,27 @@ public class EmployCRUD {
     }
 
     public void updateEmploy() throws Exception{
-        System.out.println("!!!!!!! Редактиране на работник !!!!!!!");
-        this.showAllEmploy();
-        System.out.print("Въведете ИД на работник: ");
-        String employ_id =  this.scanner.nextLine();
+        try {
+            System.out.println("!!!!!!! Редактиране на работник !!!!!!!");
+            this.showAllEmploy();
+            System.out.print("Въведете ИД на работник: ");
+            String employ_id = this.scanner.nextLine();
 
-        System.out.print("Въведете ново ИД на работник: ");
-        String company_id =  this.scanner.nextLine();
+            System.out.print("Въведете ново ИМЕ на работник: ");
+            String name = this.scanner.nextLine();
 
-        System.out.print("Въведете ново ИМЕ на работник: ");
-        String new_client_name =  this.scanner.nextLine();
+            Employ employ = new Employ();
+            employ.setId(employ_id);
+            employ.setName(name);
 
-        Employ employ = new Employ();
-        employ.setId(employ_id);
-        employ.setCompany_id(company_id);
-        employ.setName(new_client_name);
-
-
-        boolean isUpdate =  this.repositoryEmploy.updateClient(employ);
-        if(isUpdate){
-            System.out.println("УСПЕШНО ОБНОВИХТЕ РАБОТНИК !");
-        }else {
-            System.out.println("НЯМА НАМЕРЕН РАБОТНИК С ТОВА ИД: " + employ_id);
+            boolean isUpdate = this.repositoryEmploy.updateEmploy(employ);
+            if (isUpdate) {
+                System.out.println("УСПЕШНО ОБНОВИХТЕ РАБОТНИК !");
+            } else {
+                System.out.println("НЯМА НАМЕРЕН РАБОТНИК С ТОВА ИД: " + employ_id);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
 
     }
@@ -135,9 +136,9 @@ public class EmployCRUD {
 
 
     public void showAllEmploy() throws Exception{
-        ArrayList<Employ> clients = repositoryEmploy.getEmployAllClients();
-        for (int i = 0; i < clients.size(); i++) {
-            System.out.println(clients.get(i));
+        ArrayList<Employ> employs = repositoryEmploy.getAllEmploys();
+        for (int i = 0; i < employs.size(); i++) {
+            System.out.println(employs.get(i));
         }
     }
 }

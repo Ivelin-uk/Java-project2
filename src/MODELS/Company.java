@@ -71,12 +71,8 @@ public class Company {
         this.trasports = trasports;
     }
 
-
     @Override
     public String toString() {
-        return "Company{" +
-                "id='" + id + '\'' +
-                ", company_name='" + company_name + '\'' +
-                '}';
+        return  "КОМПАНИЯ - ИД: " + id + " ИМЕ: " + company_name;
     }
 }

@@ -1,5 +1,3 @@
-import DB.RepositoryCompany;
-
 import java.util.Scanner;
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -13,7 +11,7 @@ public class Main {
 
                 if(input == 1)
                 {
-                    Controller controller = new Controller();
+                    ControllerCRUD controller = new ControllerCRUD();
                     controller.ControllerMenu();
                 }
 

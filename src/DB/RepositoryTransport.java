@@ -12,7 +12,7 @@ public class RepositoryTransport extends Repository{
     }
     public boolean insertTransport(Transport transport) throws Exception
     {
-        String sql = "INSERT INTO transport_table (start_point, end_point, departure_date, arrival_date, " +
+        String sql = "INSERT INTO transport (start_point, end_point, departure_date, arrival_date, " +
                 "cargo_type, total_weight, passenger_count, employ_id) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 

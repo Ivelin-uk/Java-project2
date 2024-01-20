@@ -69,7 +69,6 @@ public class CompanyCRUD {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
     public void insertCompany() throws Exception{
@@ -92,9 +91,9 @@ public class CompanyCRUD {
     public void updateCompany() throws Exception{
         System.out.println("!!!!!!! Редактиране на компания !!!!!!!");
         this.showAllCompanies();
-        System.out.print("Въведете id на компанията: ");
+        System.out.print("Въведете ИД на компанията: ");
         String id = this.scanner.nextLine();
-        System.out.println("Ново име на компанията: ");
+        System.out.println("Ново ИМЕ на компанията: ");
         String newName = this.scanner.nextLine();
 
         Company company = new Company(id,newName);
@@ -109,7 +108,7 @@ public class CompanyCRUD {
     public void deleteCompany() throws Exception{
         System.out.println("!!!!!!! Изтриване на компания !!!!!!!");
         this.showAllCompanies();
-        System.out.print("Въведете id на компанията: ");
+        System.out.print("Въведете ИД на компанията: ");
         String id = this.scanner.nextLine();
 
         boolean isDeleted =  this.repositoryCompany.deleteCompany(id);
@@ -129,20 +128,24 @@ public class CompanyCRUD {
     }
 
     public String fullInfoCompany() throws Exception{
-        System.out.println("!!!!!!! Подробна информация на компания !!!!!!!");
+        System.out.println("!!!!!!! ПРЕГЛЕД НА ВСИЧКО КОМПАНИИИ !!!!!!!");
         this.showAllCompanies();
-        System.out.print("Въведете id на компанията: ");
+        System.out.print("Въведете ИД на компанията: ");
         String id = this.scanner.nextLine();
 
+        System.out.println();
+        System.out.println("----ПОДРОБНА ИНФОРМАЦИЯ -----");
         Company company = this.repositoryCompany.getCompanyById(id);
-        String result = "ИМЕ НА КОМПАНИЯТА: " + company.getCompany_name() + " ИД: " + company.getId();
+
+        System.out.println();
+        String result = company.toString();
         result += "\n";
         result += " -- КЛИЕНТИ НА КОМПАНИЯТА: ";
         result += "\n";
 
         ArrayList<Client> clients =  this.repositoryClient.getClientsOnCompany(id);
         for (int i = 0; i < clients.size(); i++) {
-            result += "   - ID: " + clients.get(i).getId() + " NAME: " + clients.get(i).getName_client();
+            result += clients.get(i).toString();
             result += "\n";
         }
 
@@ -152,7 +155,7 @@ public class CompanyCRUD {
 
         ArrayList<Employ> employs =  this.repositoryEmploy.getEmploiesOnCompany(id);
         for (int i = 0; i < employs.size(); i++) {
-            result += "   - ID: " + employs.get(i).getId() + " NAME: " + employs.get(i).getName();
+            result += employs.toString();
             result += "\n";
         }
 

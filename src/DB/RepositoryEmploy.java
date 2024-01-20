@@ -30,7 +30,7 @@ public class RepositoryEmploy extends Repository{
         return companyClients;
     }
 
-    public ArrayList<Employ> getEmployAllClients() throws Exception {
+    public ArrayList<Employ> getAllEmploys() throws Exception {
         ArrayList<Employ> companyClients = new ArrayList<Employ>();
 
         String sql = "SELECT * FROM emploies";
@@ -76,12 +76,11 @@ public class RepositoryEmploy extends Repository{
             return false;
         }
     }
-    public boolean updateClient(Employ employ) throws Exception
+    public boolean updateEmploy(Employ employ) throws Exception
     {
-        String sql = "UPDATE emploies SET name = ? , company_id = ? WHERE id = ?";
+        String sql = "UPDATE emploies SET name = ? WHERE id = ?";
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, employ.getName());
-        pstmt.setString(2, employ.getCompany_id());
         pstmt.setString(3, employ.getId());
 
         int rowsAffected = pstmt.executeUpdate();

@@ -1,18 +1,25 @@
 package MODELS;
 
+import CRUD.EmployCRUD;
+
 public class Employ {
     //id, name, company_id
     private String id;
     private String name;
     private String company_id;
 
-    public Employ(){
+    public Employ() throws Exception{
 
     }
-    public Employ(String id, String name, String company_id) {
-        this.id = id;
-        this.name = name;
-        this.company_id = company_id;
+
+    public Employ(String name,String company_id) throws Exception {
+        this.setName(name);
+        this.setCompany_id(company_id);
+    }
+    public Employ(String id, String name, String company_id) throws Exception {
+        this.setId(id);
+        this.setName(name);
+        this.setCompany_id(company_id);
     }
 
     public String getId() {
@@ -27,7 +34,10 @@ public class Employ {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception {
+        if(name.length() < 3){
+            throw new Exception("Дължината на името не може под 3 символа.");
+        }
         this.name = name;
     }
 
@@ -41,10 +51,6 @@ public class Employ {
 
     @Override
     public String toString() {
-        return "Employ{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", company_id='" + company_id + '\'' +
-                '}';
+        return "РАБОТНИК - ИД: " + id + " ИМЕ: " + name;
     }
 }

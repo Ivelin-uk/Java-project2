@@ -2,6 +2,7 @@ package CRUD;
 
 import DB.RepositoryClient;
 import DB.RepositoryCompany;
+import DB.RepositoryEmploy;
 import DB.RepositoryTransport;
 import MODELS.Company;
 import MODELS.Employ;
@@ -9,6 +10,7 @@ import MODELS.Transport;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -17,11 +19,13 @@ public class TransportCRUD {
     RepositoryCompany repositoryCompany;
     RepositoryClient repositoryClient;
     RepositoryTransport repositoryTransport;
+    RepositoryEmploy repositoryEmploy;
     public TransportCRUD()  throws Exception{
         this.scanner = new Scanner(System.in);
         this.repositoryCompany = new RepositoryCompany();
         this.repositoryClient = new RepositoryClient();
         this.repositoryTransport = new RepositoryTransport();
+        this.repositoryEmploy = new RepositoryEmploy();
     }
 
     public void menu(){
@@ -62,6 +66,7 @@ public class TransportCRUD {
             System.out.print("Въведете брой пътници: ");
             int passenger_count = scanner.nextInt();
 
+            this.showAllEmploy();
             System.out.println("Избере ИД на работника");
             int employee_id = scanner.nextInt();
 
@@ -77,7 +82,7 @@ public class TransportCRUD {
             );
 
             boolean isAdded = repositoryTransport.insertTransport(transport);
-
+            System.out.println(isAdded);
             if(isAdded){
                 System.out.println("УСПЕШНО ДОБАВИХТЕ ТРАНСПОРТ !");
             }else {
@@ -86,6 +91,14 @@ public class TransportCRUD {
 
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void showAllEmploy() throws Exception{
+        System.out.println("!!!!!!! Всички работници !!!!!!!");
+        ArrayList<Employ> employs = repositoryEmploy.getAllEmploys();
+        for (int i = 0; i < employs.size(); i++) {
+            System.out.println(employs.get(i));
         }
     }
 }
