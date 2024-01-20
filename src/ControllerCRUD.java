@@ -8,8 +8,9 @@ public class ControllerCRUD {
     Scanner scanner = new Scanner(System.in);
 
     public void menu(){
+        System.out.println();
         System.out.println("-------------------------------------------------------------------");
-        System.out.println("------------ COMPANY MENU (редактиране и изтриване) ---------------");
+        System.out.println("-----------= КОМПАНИЯ МЕНЮ (редактиране и изтриване) ---------------");
         System.out.println("--------------------------------------------------------------------");
         System.out.println("1. Въвеждане, редактиране и изтриване на конпания");
         System.out.println("2. Въвеждане, редактиране и изтриване на клиентите на транспортната компания");
@@ -17,8 +18,7 @@ public class ControllerCRUD {
         System.out.println("4. Въвеждане, редактиране и изтриване на служителите на компанията.");
         System.out.println("5. Въвеждане, на транспорт");
         System.out.println("6. Изход");
-        System.out.println("-------------------------------------------");
-        System.out.print("Въведете команда от 1 до 5: ");
+        System.out.print("Въведете команда от 1 до 6: ");
     }
     public void ControllerMenu() throws Exception{
 

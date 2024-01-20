@@ -9,14 +9,14 @@ import java.util.Date;
 public class Statistic {
     public static void companyInfoFile() {
         // Создаем уникальное имя файла на основе текущего времени
-        String fileName = generateFileName();
+        String fileName = "src/STATISTIC/FILES/" + generateFileName();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             // Ваш код для записи в файл
             String content = "Пример текста для записи в новый файл.";
             writer.write(content);
 
-            System.out.println("Текст успешно записан в файл: " + fileName);
+            System.out.println("Успешно записан в файл: " + fileName);
 
         } catch (IOException e) {
             System.err.println("Ошибка при записи в файл: " + e.getMessage());

@@ -17,7 +17,8 @@ public class Main {
 
                 if(input == 2)
                 {
-
+                    ControllerStatistic controllerStatistic = new ControllerStatistic();
+                    controllerStatistic.ControllerMenu();
                 }
 
                 if(input == 3)
@@ -34,12 +35,13 @@ public class Main {
     }
     public static void showMainMenu(){
         System.out.println();
-        System.out.println("============================================");
-        System.out.println("=============== MAIN MENU  =================");
-        System.out.println("============================================");
+        System.out.println("==============================================");
+        System.out.println("=============== ГЛАВНО МЕНЮ  =================");
+        System.out.println("==============================================");
         System.out.println("1.Оперативна обработка компании");
         System.out.println("2.Статистика");
-        System.out.println("============================================");
+        System.out.println("===============================================");
         System.out.print("Въведете команда: ");
+
     }
 }
