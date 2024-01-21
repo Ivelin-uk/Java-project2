@@ -98,7 +98,7 @@ public class EmployCRUD {
             System.out.println("!!!!!!! Редактиране на работник !!!!!!!");
 
             this.showAllEmploy();
-            System.out.print("Въведете НОВО ИД на работник: ");
+            System.out.print("Въведете ИД на работник: ");
             String employ_id = this.scanner.nextLine();
 
             System.out.print("Въведете НОВО ИМЕ на работник: ");

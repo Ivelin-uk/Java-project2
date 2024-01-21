@@ -103,10 +103,10 @@ public class CompanyCRUD {
             System.out.println("!!!!!!! Редактиране на компания !!!!!!!");
 
             this.showAllCompanies();
-            System.out.print("Въведете НОВО ИД на компанията: ");
+            System.out.print("Въведете ИД на компанията: ");
             String id = this.scanner.nextLine();
 
-            System.out.println("Въведете НОВО ИМЕ на компанията: ");
+            System.out.print("Въведете НОВО ИМЕ на компанията: ");
             String newName = this.scanner.nextLine();
 
             Company company = new Company(id, newName);

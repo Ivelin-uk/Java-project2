@@ -1,7 +1,4 @@
-import CRUD.ClientCRUD;
-import CRUD.CompanyCRUD;
-import CRUD.EmployCRUD;
-import CRUD.TransportCRUD;
+import CRUD.*;
 
 import java.util.Scanner;
 public class ControllerCRUD {
@@ -37,7 +34,8 @@ public class ControllerCRUD {
             }
 
             if(command == 3 ){
-
+                VehicleCRUD vehicleCRUD = new VehicleCRUD();
+                vehicleCRUD.start();
             }
 
             if(command == 4 ){

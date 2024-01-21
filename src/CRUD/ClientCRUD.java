@@ -96,6 +96,7 @@ public class ClientCRUD {
             System.out.print("Въведете ИД на клиента: ");
             String client_id = this.scanner.nextLine();
 
+            companyCRUD.showAllCompanies();
             System.out.print("Въведете НОВО ИД на компанията: ");
             String company_id = this.scanner.nextLine();
 

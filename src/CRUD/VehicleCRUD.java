@@ -80,16 +80,16 @@ public class VehicleCRUD {
             System.out.println("!!!!!!! Добавяне на превозно средство !!!!!!!");
             companyCRUD.showAllCompanies();
             System.out.print("Въведете ИД на компанията: ");
-            int company_id = this.scanner.nextInt();
+            int company_id = Integer.parseInt(this.scanner.nextLine());
 
             System.out.print("Въведете ТИП на превозното средство: ");
             String vehicle_type = this.scanner.nextLine();
 
             employCRUD.showAllEmploy();
             System.out.print("Въведете ИД на работника; ");
-            int employ_id =  this.scanner.nextInt();
+            int employ_id =  Integer.parseInt(this.scanner.nextLine());
 
-            System.out.println("Въведете РЕГИСТРАЦИОННЕР НОМЕ превозното средство:");
+            System.out.print("Въведете РЕГИСТРАЦИОННЕР НОМЕ превозното средство:");
             String register_number =  this.scanner.nextLine();
 
             Vehicle vehicle = new Vehicle(company_id, vehicle_type, employ_id, register_number);
@@ -110,19 +110,19 @@ public class VehicleCRUD {
             System.out.println("!!!!!!! Редактиране на превозно средство !!!!!!!");
             this.showAllVehicle();
             System.out.print("Въведете ИД на превозно средство: ");
-            int id = this.scanner.nextInt();
+            int id = Integer.parseInt(this.scanner.nextLine());
 
             System.out.print("Въведете НОВО ИД на компанията: ");
-            int company_id = this.scanner.nextInt();
+            int company_id = Integer.parseInt(this.scanner.nextLine());
 
             System.out.print("Въведете НОВ ТИП на превозното средство: ");
             String vehicle_type = this.scanner.nextLine();
 
             employCRUD.showAllEmploy();
             System.out.print("Въведете НОВО ИД на работника; ");
-            int employ_id =  this.scanner.nextInt();
+            int employ_id =  Integer.parseInt(this.scanner.nextLine());
 
-            System.out.println("Въведете НОВ РЕГИСТРАЦИОННЕН НОМЕР на превозното средство:");
+            System.out.print("Въведете НОВ РЕГИСТРАЦИОННЕН НОМЕР на превозното средство:");
             String register_number =  this.scanner.nextLine();
 
             Vehicle vehicle = new Vehicle(id,company_id, vehicle_type, employ_id, register_number);

@@ -60,11 +60,11 @@ public class Client {
 
     @Override
     public String toString() {
-        String r = "КЛИЕНТ - ИД: [ " + id + " ] ИМЕ НА КЛИЕНТА: " + name_client;
+        String r = "КЛИЕНТ - ИД: " + id + ", ИМЕ НА КЛИЕНТА: " + name_client;
         if(Integer.parseInt(isDebtor) == 1){
-            r += " ДЛЪЖНИК: да ";
+            r += ", ДЛЪЖНИК: да ";
         }else {
-            r += " ДЛЪЖНИК: не ";
+            r += ", ДЛЪЖНИК: не ";
         }
 
         return r;
