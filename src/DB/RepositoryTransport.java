@@ -13,8 +13,8 @@ public class RepositoryTransport extends Repository{
     public boolean insertTransport(Transport transport) throws Exception
     {
         String sql = "INSERT INTO transports (start_point, end_point, departure_date, arrival_date, " +
-                "cargo_type, total_weight, passenger_count, employ_id,company_id,price) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "cargo_type, total_weight, passenger_count, employ_id,company_id,price,client_id,payment) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, transport.getStart_point());
@@ -27,6 +27,8 @@ public class RepositoryTransport extends Repository{
         pstmt.setInt(8, transport.getEmploy_id());
         pstmt.setInt(9, transport.getCompany_id());
         pstmt.setDouble(10, transport.getPrice());
+        pstmt.setInt(11, transport.getClient_id());
+        pstmt.setInt(12, transport.getPayment());
 
         int rowsAffected = pstmt.executeUpdate();
         if (rowsAffected > 0) {
@@ -59,6 +61,7 @@ public class RepositoryTransport extends Repository{
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Transport transport = new Transport(
+                            rs.getInt("id"),
                             rs.getString("start_point"),
                             rs.getString("end_point"),
                             rs.getDate("departure_date"),
@@ -90,6 +93,7 @@ public class RepositoryTransport extends Repository{
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Transport transport = new Transport(
+                            rs.getInt("id"),
                             rs.getString("start_point"),
                             rs.getString("end_point"),
                             rs.getDate("departure_date"),
@@ -120,6 +124,7 @@ public class RepositoryTransport extends Repository{
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Transport transport = new Transport(
+                            rs.getInt("id"),
                             rs.getString("start_point"),
                             rs.getString("end_point"),
                             rs.getDate("departure_date"),

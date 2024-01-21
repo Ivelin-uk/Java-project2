@@ -181,7 +181,7 @@ public class CompanyCRUD {
         result += " -- ТРАНСПОРТИ НА КОМПАНИЯТА:  ";
         result += "\n";
 
-        ArrayList<Transport> transports =  this.repositoryTransport.getAllTransport(Integer.parseInt(id));
+        ArrayList<Transport> transports =  this.repositoryTransport.getAllTransportOnCompany(Integer.parseInt(id));
         for (int i = 0; i < transports.size(); i++) {
             result += transports.get(i).toString();
             result += "\n";

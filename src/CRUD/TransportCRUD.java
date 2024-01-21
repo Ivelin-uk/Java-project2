@@ -41,6 +41,7 @@ public class TransportCRUD {
         System.out.println("1. Добавяне на транспорт");
         System.out.println("2. Изтриване на транспорт");
         System.out.println("3. Преглед на всички транспорти");
+        System.out.println("4. Изход");
         System.out.println("-------------------------------------");
     }
 
@@ -60,6 +61,10 @@ public class TransportCRUD {
 
             if(command == 3){
                 this.showAllTransports();
+            }
+
+            if(command == 4){
+                break;
             }
 
             this.menu();
