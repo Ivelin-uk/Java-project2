@@ -3,9 +3,11 @@ package CRUD;
 import DB.RepositoryClient;
 import DB.RepositoryCompany;
 import DB.RepositoryEmploy;
+import DB.RepositoryTransport;
 import MODELS.Client;
 import MODELS.Company;
 import MODELS.Employ;
+import MODELS.Transport;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,11 +17,13 @@ public class CompanyCRUD {
     RepositoryCompany repositoryCompany;
     RepositoryClient repositoryClient;
     RepositoryEmploy repositoryEmploy;
+    RepositoryTransport repositoryTransport;
     public CompanyCRUD()  throws Exception{
         this.scanner = new Scanner(System.in);
         this.repositoryCompany = new RepositoryCompany();
         this.repositoryClient = new RepositoryClient();
         this.repositoryEmploy = new RepositoryEmploy();
+        this.repositoryTransport = new RepositoryTransport();
     }
 
     public void menu(){
@@ -134,7 +138,9 @@ public class CompanyCRUD {
         String id = this.scanner.nextLine();
 
         System.out.println();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println("----ПОДРОБНА ИНФОРМАЦИЯ -----");
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         Company company = this.repositoryCompany.getCompanyById(id);
 
         System.out.println();
@@ -155,7 +161,21 @@ public class CompanyCRUD {
 
         ArrayList<Employ> employs =  this.repositoryEmploy.getEmploiesOnCompany(id);
         for (int i = 0; i < employs.size(); i++) {
-            result += employs.toString();
+            result += employs.get(i).toString();
+            result += "\n";
+        }
+
+        result += "\n";
+        result += " -- РАБОТНИЦИ НА КОМПАНИЯТА: ";
+        result += "\n";
+
+        result += "\n";
+        result += " -- ТРАНСПОРТИ НА КОМПАНИЯТА:  ";
+        result += "\n";
+
+        ArrayList<Transport> transports =  this.repositoryTransport.getAllTransports(Integer.parseInt(id));
+        for (int i = 0; i < transports.size(); i++) {
+            result += transports.get(i).toString();
             result += "\n";
         }
 

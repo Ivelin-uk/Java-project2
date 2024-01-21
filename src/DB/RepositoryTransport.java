@@ -12,7 +12,7 @@ public class RepositoryTransport extends Repository{
     }
     public boolean insertTransport(Transport transport) throws Exception
     {
-        String sql = "INSERT INTO transport (start_point, end_point, departure_date, arrival_date, " +
+        String sql = "INSERT INTO transports (start_point, end_point, departure_date, arrival_date, " +
                 "cargo_type, total_weight, passenger_count, employ_id,company_id,price) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -34,5 +34,34 @@ public class RepositoryTransport extends Repository{
         } else {
             return false;
         }
+    }
+
+    public ArrayList<Transport> getAllTransports(int companyId) throws Exception {
+        ArrayList<Transport>  transports = new ArrayList<Transport>();
+
+        String sql = "SELECT * FROM transports WHERE company_id = ?";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
+            pstmt.setInt(1, companyId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Transport transport = new Transport(
+                            rs.getString("start_point"),
+                            rs.getString("end_point"),
+                            rs.getDate("departure_date"),
+                            rs.getDate("arrival_date"),
+                            rs.getString("cargo_type"),
+                            rs.getDouble("total_weight"),
+                            rs.getInt("passenger_count"),
+                            rs.getInt("employ_id"),
+                            rs.getInt("company_id"),
+                            rs.getDouble("price")
+                    );
+                    transports.add(transport);
+                }
+            }
+        }
+
+        return transports;
     }
 }
