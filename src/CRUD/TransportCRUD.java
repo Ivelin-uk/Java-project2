@@ -20,12 +20,16 @@ public class TransportCRUD {
     RepositoryClient repositoryClient;
     RepositoryTransport repositoryTransport;
     RepositoryEmploy repositoryEmploy;
+    EmployCRUD employCRUD;
+    CompanyCRUD companyCRUD;
     public TransportCRUD()  throws Exception{
         this.scanner = new Scanner(System.in);
         this.repositoryCompany = new RepositoryCompany();
         this.repositoryClient = new RepositoryClient();
         this.repositoryTransport = new RepositoryTransport();
         this.repositoryEmploy = new RepositoryEmploy();
+        this.employCRUD = new EmployCRUD();
+        this.companyCRUD = new CompanyCRUD();
     }
 
     public void menu(){
@@ -66,9 +70,16 @@ public class TransportCRUD {
             System.out.print("Въведете брой пътници: ");
             int passenger_count = scanner.nextInt();
 
-            this.showAllEmploy();
-            System.out.println("Избере ИД на работника");
+            this.employCRUD.showAllEmploy();
+            System.out.print("Избере ИД на работника :");
             int employee_id = scanner.nextInt();
+
+            this.companyCRUD.showAllCompanies();
+            System.out.print("Избере ИД на компанията :");
+            int company_id = scanner.nextInt();
+
+            System.out.print("Цена: ");
+            double price =scanner.nextDouble();
 
             Transport transport = new Transport(
                     start_point,
@@ -78,7 +89,9 @@ public class TransportCRUD {
                     cargo_type,
                     total_weight,
                     passenger_count,
-                    employee_id
+                    employee_id,
+                    company_id,
+                    price
             );
 
             boolean isAdded = repositoryTransport.insertTransport(transport);
@@ -91,14 +104,6 @@ public class TransportCRUD {
 
         }catch (Exception e){
             System.out.println(e.getMessage());
-        }
-    }
-
-    public void showAllEmploy() throws Exception{
-        System.out.println("!!!!!!! Всички работници !!!!!!!");
-        ArrayList<Employ> employs = repositoryEmploy.getAllEmploys();
-        for (int i = 0; i < employs.size(); i++) {
-            System.out.println(employs.get(i));
         }
     }
 }

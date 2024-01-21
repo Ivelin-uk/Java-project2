@@ -13,7 +13,7 @@ public class RepositoryEmploy extends Repository{
     public ArrayList<Employ> getEmploiesOnCompany(String company_id) throws Exception {
         ArrayList<Employ> companyClients = new ArrayList<Employ>();
 
-        String sql = "SELECT * FROM emploies WHERE company_id = ?";
+        String sql = "SELECT * FROM employees WHERE company_id = ?";
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, company_id);
 
@@ -33,7 +33,7 @@ public class RepositoryEmploy extends Repository{
     public ArrayList<Employ> getAllEmploys() throws Exception {
         ArrayList<Employ> companyClients = new ArrayList<Employ>();
 
-        String sql = "SELECT * FROM emploies";
+        String sql = "SELECT * FROM employees";
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
 
@@ -51,7 +51,7 @@ public class RepositoryEmploy extends Repository{
 
     public boolean insertEmploy(Employ employ) throws Exception
     {
-        String sql = "INSERT INTO emploies (name, company_id) VALUES (?, ?)";
+        String sql = "INSERT INTO employees (name, company_id) VALUES (?, ?)";
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, employ.getName());
         pstmt.setString(2, employ.getCompany_id());
@@ -65,7 +65,7 @@ public class RepositoryEmploy extends Repository{
     }
     public boolean deleteEmploy(String employ_id) throws Exception
     {
-        String sql = "DELETE FROM emploies WHERE id = ?";
+        String sql = "DELETE FROM employees WHERE id = ?";
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, employ_id);
 
@@ -78,7 +78,7 @@ public class RepositoryEmploy extends Repository{
     }
     public boolean updateEmploy(Employ employ) throws Exception
     {
-        String sql = "UPDATE emploies SET name = ? WHERE id = ?";
+        String sql = "UPDATE employees SET name = ? WHERE id = ?";
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, employ.getName());
         pstmt.setString(3, employ.getId());

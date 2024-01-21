@@ -13,8 +13,8 @@ public class RepositoryTransport extends Repository{
     public boolean insertTransport(Transport transport) throws Exception
     {
         String sql = "INSERT INTO transport (start_point, end_point, departure_date, arrival_date, " +
-                "cargo_type, total_weight, passenger_count, employ_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "cargo_type, total_weight, passenger_count, employ_id,company_id,price) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         pstmt.setString(1, transport.getStart_point());
@@ -25,6 +25,8 @@ public class RepositoryTransport extends Repository{
         pstmt.setDouble(6, transport.getTotal_weight());
         pstmt.setInt(7, transport.getPassenger_count());
         pstmt.setInt(8, transport.getEmploy_id());
+        pstmt.setInt(9, transport.getCompany_id());
+        pstmt.setDouble(10, transport.getPrice());
 
         int rowsAffected = pstmt.executeUpdate();
         if (rowsAffected > 0) {

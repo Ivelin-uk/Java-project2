@@ -12,7 +12,19 @@ public class Transport {
     private double total_weight;
     private int passenger_count;
     private int employ_id;
-    public Transport(String start_point, String end_point, Date departure_date, Date arrival_date, String cargo_type, double total_weight, int passenger_count,int employ_id) {
+    private int company_id;
+    private double price;
+    public Transport(String start_point,
+                     String end_point,
+                     Date departure_date,
+                     Date arrival_date,
+                     String cargo_type,
+                     double total_weight,
+                     int passenger_count,
+                     int employ_id,
+                     int company_id,
+                     double price
+    ) {
         this.setStart_point(start_point);
         this.setEnd_point(end_point);
         this.setDeparture_date(departure_date);
@@ -21,6 +33,24 @@ public class Transport {
         this.setTotal_weight(total_weight);
         this.setPassenger_count(passenger_count);
         this.setEmploy_id(employ_id);
+        this.setCompany_id(company_id);
+        this.setPrice(price);
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getId() {
