@@ -8,6 +8,8 @@ public class Employ {
     private String name;
     private String company_id;
 
+    private String isDebtor;
+
     public Employ() throws Exception{
 
     }
@@ -20,6 +22,14 @@ public class Employ {
         this.setId(id);
         this.setName(name);
         this.setCompany_id(company_id);
+    }
+
+    public String getIsDebtor() {
+        return isDebtor;
+    }
+
+    public void setIsDebtor(String isDebtor) {
+        this.isDebtor = isDebtor;
     }
 
     public String getId() {

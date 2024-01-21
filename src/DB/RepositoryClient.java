@@ -1,6 +1,7 @@
 package DB;
 
 import MODELS.Client;
+import MODELS.Employ;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,6 +85,21 @@ public class RepositoryClient extends Repository{
         pstmt.setString(1, client.getName_client());
         pstmt.setString(2, client.getCompany_id());
         pstmt.setString(3, client.getId());
+
+        int rowsAffected = pstmt.executeUpdate();
+        if (rowsAffected > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean updateClientIsDebtor(int id, int isDebor) throws Exception
+    {
+        String sql = "UPDATE clients SET isDebtor = ? WHERE id = ?";
+        PreparedStatement pstmt = this.conn.prepareStatement(sql);
+        pstmt.setInt(1, isDebor);
+        pstmt.setInt(2, id);
 
         int rowsAffected = pstmt.executeUpdate();
         if (rowsAffected > 0) {

@@ -14,6 +14,8 @@ public class Transport {
     private int employ_id;
     private int company_id;
     private double price;
+    private int client_id;
+    private int payment;
     public Transport(String start_point,
                      String end_point,
                      Date departure_date,
@@ -23,7 +25,10 @@ public class Transport {
                      int passenger_count,
                      int employ_id,
                      int company_id,
-                     double price
+                     double price,
+                     int client_id,
+                     int payment
+
     ) {
         this.setStart_point(start_point);
         this.setEnd_point(end_point);
@@ -35,22 +40,16 @@ public class Transport {
         this.setEmploy_id(employ_id);
         this.setCompany_id(company_id);
         this.setPrice(price);
+        this.setClient_id(client_id);
+        this.setPayment(payment);
     }
 
-    public int getCompany_id() {
-        return company_id;
+    public int getPayment() {
+        return payment;
     }
 
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPayment(int payment) {
+        this.payment = payment;
     }
 
     public int getId() {
@@ -125,6 +124,30 @@ public class Transport {
         this.employ_id = employ_id;
     }
 
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(int client_id) {
+        this.client_id = client_id;
+    }
+
     @Override
     public String toString() {
         return "Transport{" +
@@ -136,6 +159,10 @@ public class Transport {
                 ", cargo_type='" + cargo_type + '\'' +
                 ", total_weight=" + total_weight +
                 ", passenger_count=" + passenger_count +
+                ", employ_id=" + employ_id +
+                ", company_id=" + company_id +
+                ", price=" + price +
+                ", client_id=" + client_id +
                 '}';
     }
 }

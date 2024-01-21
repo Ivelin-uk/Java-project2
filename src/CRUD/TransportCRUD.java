@@ -23,6 +23,7 @@ public class TransportCRUD {
     RepositoryEmploy repositoryEmploy;
     EmployCRUD employCRUD;
     CompanyCRUD companyCRUD;
+    ClientCRUD clientCRUD;
     public TransportCRUD()  throws Exception{
         this.scanner = new Scanner(System.in);
         this.repositoryCompany = new RepositoryCompany();
@@ -31,14 +32,15 @@ public class TransportCRUD {
         this.repositoryEmploy = new RepositoryEmploy();
         this.employCRUD = new EmployCRUD();
         this.companyCRUD = new CompanyCRUD();
+        this.clientCRUD = new ClientCRUD();
     }
 
     public void menu(){
         System.out.println("-------------------------------------");
         System.out.println("!!!!!!! Добавяне на транспорт !!!!!!!");
-        System.out.println("1 . Добавяне на транспорт");
-        System.out.println("2 . Изтриване на транспорт");
-        System.out.println("3 . Преглед на всички транспорти");
+        System.out.println("1. Добавяне на транспорт");
+        System.out.println("2. Изтриване на транспорт");
+        System.out.println("3. Преглед на всички транспорти");
         System.out.println("-------------------------------------");
     }
 
@@ -68,6 +70,22 @@ public class TransportCRUD {
     public void insertTransport() throws Exception{
         try {
             System.out.println("!!!!!!! Добавяне на транспорт !!!!!!!");
+            clientCRUD.showAllClient();
+            System.out.print("Въведе ИД на клента: ");
+            int client_id = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Цена: ");
+            double price = Double.parseDouble(scanner.nextLine());
+
+            System.out.print("Плати: [yes/on]: ");
+            String payment_info = scanner.nextLine();
+            int payment;
+            if(payment_info.equals("yes")){
+                payment = 1;
+            }else{
+                payment = 0;
+            }
+
             System.out.print("Въведете начална точка:");
             String start_point = scanner.nextLine();
 
@@ -101,9 +119,6 @@ public class TransportCRUD {
             System.out.print("Избере ИД на компанията :");
             int company_id = scanner.nextInt();
 
-            System.out.print("Цена: ");
-            double price =scanner.nextDouble();
-
             Transport transport = new Transport(
                     start_point,
                     end_point,
@@ -114,7 +129,9 @@ public class TransportCRUD {
                     passenger_count,
                     employee_id,
                     company_id,
-                    price
+                    price,
+                    client_id,
+                    payment
             );
 
             boolean isAdded = repositoryTransport.insertTransport(transport);
@@ -136,17 +153,18 @@ public class TransportCRUD {
         String id = this.scanner.nextLine();
         boolean isDeleted =  this.repositoryTransport.deleteTransport(id);
         if(isDeleted){
-            System.out.println("УСПЕШНО ИЗТРИХТЕ РАБОТНИК !");
+            System.out.println("УСПЕШНО ИЗТРИХТЕ ТРАНСПОРТ !");
         }else {
             System.out.println("НЯМА НАМЕРЕНА ТРАНСПОРТ С ТОВА ИД: " + id);
         }
+
     }
 
     public void showAllTransports() throws Exception{
-        System.out.println("!!!!!!! Преглед на всички рабтници !!!!!!!");
-        ArrayList<Transport> employs = repositoryTransport.getAllTransport();
-        for (int i = 0; i < employs.size(); i++) {
-            System.out.println(employs.get(i));
+        System.out.println("!!!!!!! Преглед на вички транспорти !!!!!!!");
+        ArrayList<Transport> transports = repositoryTransport.getAllTransport();
+        for (int i = 0; i < transports.size(); i++) {
+            System.out.println(transports.get(i));
         }
     }
 }

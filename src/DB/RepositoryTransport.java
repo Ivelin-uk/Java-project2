@@ -49,7 +49,7 @@ public class RepositoryTransport extends Repository{
         }
     }
 
-    public ArrayList<Transport> getAllTransport(int companyId) throws Exception {
+    public ArrayList<Transport> getAllTransportOnCompany(int companyId) throws Exception {
         ArrayList<Transport>  transports = new ArrayList<Transport>();
 
         String sql = "SELECT * FROM transports WHERE company_id = ?";
@@ -68,7 +68,40 @@ public class RepositoryTransport extends Repository{
                             rs.getInt("passenger_count"),
                             rs.getInt("employ_id"),
                             rs.getInt("company_id"),
-                            rs.getDouble("price")
+                            rs.getDouble("price"),
+                            rs.getInt("client_id"),
+                            rs.getInt("payment")
+                    );
+                    transports.add(transport);
+                }
+            }
+        }
+
+        return transports;
+    }
+
+    public ArrayList<Transport> getAllTransportOnClient(int client_id) throws Exception {
+        ArrayList<Transport>  transports = new ArrayList<Transport>();
+
+        String sql = "SELECT * FROM transports WHERE client_id = ?";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
+            pstmt.setInt(1, client_id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Transport transport = new Transport(
+                            rs.getString("start_point"),
+                            rs.getString("end_point"),
+                            rs.getDate("departure_date"),
+                            rs.getDate("arrival_date"),
+                            rs.getString("cargo_type"),
+                            rs.getDouble("total_weight"),
+                            rs.getInt("passenger_count"),
+                            rs.getInt("employ_id"),
+                            rs.getInt("company_id"),
+                            rs.getDouble("price"),
+                            rs.getInt("client_id"),
+                            rs.getInt("payment")
                     );
                     transports.add(transport);
                 }
@@ -96,7 +129,9 @@ public class RepositoryTransport extends Repository{
                             rs.getInt("passenger_count"),
                             rs.getInt("employ_id"),
                             rs.getInt("company_id"),
-                            rs.getDouble("price")
+                            rs.getDouble("price"),
+                            rs.getInt("client_id"),
+                            rs.getInt("payment")
                     );
                     transports.add(transport);
                 }

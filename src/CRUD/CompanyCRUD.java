@@ -1,10 +1,7 @@
 package CRUD;
 
 import DB.*;
-import MODELS.Client;
-import MODELS.Company;
-import MODELS.Employ;
-import MODELS.Transport;
+import MODELS.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -146,20 +143,20 @@ public class CompanyCRUD {
             System.out.println(companies.get(i));
         }
     }
-
     public String fullInfoCompany() throws Exception{
         this.showAllCompanies();
         System.out.print("Въведете ИД на компанията: ");
         String id = this.scanner.nextLine();
-
-        System.out.println();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println("----ПОДРОБНА ИНФОРМАЦИЯ -----");
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        return strCurrentCompany(id);
+    }
+    public String strCurrentCompany(String id) throws Exception{
+        String result = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+        result += "\n";
+        result += "----ПОДРОБНА ИНФОРМАЦИЯ НА КОМПАНИЯ -----";
+        result += "\n";
         Company company = this.repositoryCompany.getCompanyById(id);
-
-        System.out.println();
-        String result = company.toString();
+        result += company.toString();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         result += "\n";
         result += " -- КЛИЕНТИ НА КОМПАНИЯТА: ";
         result += "\n";
@@ -191,10 +188,14 @@ public class CompanyCRUD {
         }
 
         result += "\n";
-        result += " -- ТРАНСПОРТИ НА КОМПАНИЯТА:  ";
+        result += " -- ПРОВОРНИ СТРЕДСТВА : ";
         result += "\n";
 
-
+        ArrayList<Vehicle> vehicles =  this.repositoryVehicle.getVehicleOnCompany(id);
+        for (int i = 0; i < vehicles.size(); i++) {
+            result += vehicles.get(i).toString();
+            result += "\n";
+        }
 
         return result;
     }
