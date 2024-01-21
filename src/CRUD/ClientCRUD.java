@@ -61,16 +61,17 @@ public class ClientCRUD {
             System.out.print("Въведете команда: ");
             command = Integer.parseInt(scanner.nextLine());
         }
-
     }
 
     public void insertClient() throws Exception{
         try {
             System.out.println("!!!!!!! Добавяне на клиент !!!!!!!");
+
             companyCRUD.showAllCompanies();
             System.out.print("Въведете ИД на компанията: ");
             String company_id = this.scanner.nextLine();
-            System.out.print("Име на клиента: ");
+
+            System.out.print("Въведете ИМЕ на клиента: ");
             String company_name = this.scanner.nextLine();
 
             Client client = new Client(company_id, company_name);
@@ -80,7 +81,7 @@ public class ClientCRUD {
             if (isAdded) {
                 System.out.println("УСПЕШНО ДОБАВИХТЕ КЛИЕНТ !");
             } else {
-                System.out.println("НЯМА НАМЕРЕН КОМПАНЯИЯ С ТОВА ИД: " + company_id);
+                System.out.println("ГРЕШКА");
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -88,50 +89,54 @@ public class ClientCRUD {
     }
 
     public void updateClient() throws Exception{
-        System.out.println("!!!!!!! Редактиране на клиент !!!!!!!");
-        this.showAllClient();
-        System.out.print("Въведете ИД на клиента: ");
-        String client_id =  this.scanner.nextLine();
+        try {
+            System.out.println("!!!!!!! Редактиране на клиент !!!!!!!");
 
-        System.out.print("Въведете ново ИД на компанията: ");
-        String company_id =  this.scanner.nextLine();
+            this.showAllClient();
+            System.out.print("Въведете ИД на клиента: ");
+            String client_id = this.scanner.nextLine();
 
-        System.out.print("Въведете ново ИМЕ на клиента: ");
-        String new_client_name =  this.scanner.nextLine();
+            System.out.print("Въведете НОВО ИД на компанията: ");
+            String company_id = this.scanner.nextLine();
 
-        Client client = new Client();
-        client.setId(client_id);
-        client.setCompany_id(company_id);
-        client.setName_client(new_client_name);
+            System.out.print("Въведете НОВО ИМЕ на клиента: ");
+            String new_client_name = this.scanner.nextLine();
 
+            Client client = new Client();
+            client.setId(client_id);
+            client.setCompany_id(company_id);
+            client.setName_client(new_client_name);
 
-        boolean isUpdate =  this.repositoryClient.updateClient(client);
-        if(isUpdate){
-            System.out.println("УСПЕШНО ОБНОВИХТЕ КЛИЕНТА !");
-        }else {
-            System.out.println("НЯМА НАМЕРЕН КЛИЕНТА С ТОВА ИД: " + client_id);
+            boolean isUpdate = this.repositoryClient.updateClient(client);
+
+            if (isUpdate) {
+                System.out.println("УСПЕШНО ОБНОВИХТЕ КЛИЕНТА !");
+            } else {
+                System.out.println("НЯМА НАМЕРЕН КЛИЕНТА С ТОВА ИД: " + client_id);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
-
     }
-
-
     public void deleteClient() throws Exception{
         System.out.println("!!!!!!! Изтриване на клиент !!!!!!!");
+
         this.showAllClient();
         System.out.print("Въведете ИД на клиента: ");
         String client_id = this.scanner.nextLine();
 
         boolean isDeleted =  this.repositoryClient.deleteClient(client_id);
+
         if(isDeleted){
             System.out.println("УСПЕШНО ИЗТРИХТЕ КЛИЕНТА !");
         }else {
-            System.out.println("НЯМА НАМЕРЕНА КЛИЕНТ С ТОВА ИД: " + client_id);
+            System.out.println("НЯМА НАМЕРЕН КЛИЕНТ С ТОВА ИД: " + client_id);
         }
     }
 
-
     public void showAllClient() throws Exception{
-        ArrayList<Client> clients = repositoryClient.getClientsAllClients();
+        System.out.println("!!!!!!! Преглед на всички клиенти !!!!!!!");
+        ArrayList<Client> clients = repositoryClient.getAllClients();
         for (int i = 0; i < clients.size(); i++) {
             System.out.println(clients.get(i));
         }

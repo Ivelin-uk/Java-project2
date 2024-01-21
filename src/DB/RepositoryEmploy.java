@@ -10,7 +10,7 @@ public class RepositoryEmploy extends Repository{
     public RepositoryEmploy()  throws Exception{
         super();
     }
-    public ArrayList<Employ> getEmploiesOnCompany(String company_id) throws Exception {
+    public ArrayList<Employ> getEmployeesOnCompany(String company_id) throws Exception {
         ArrayList<Employ> companyClients = new ArrayList<Employ>();
 
         String sql = "SELECT * FROM employees WHERE company_id = ?";

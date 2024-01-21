@@ -76,7 +76,7 @@ public class EmployCRUD {
             companyCRUD.showAllCompanies();
             System.out.print("Въведете ИД на компанията: ");
             String company_id = this.scanner.nextLine();
-            System.out.print("Име на работник: ");
+            System.out.print("Въведете ИМЕ на работник: ");
             String company_name = this.scanner.nextLine();
 
             Employ employ = new Employ(company_name, company_id);
@@ -96,11 +96,12 @@ public class EmployCRUD {
     public void updateEmploy() throws Exception{
         try {
             System.out.println("!!!!!!! Редактиране на работник !!!!!!!");
+
             this.showAllEmploy();
-            System.out.print("Въведете ИД на работник: ");
+            System.out.print("Въведете НОВО ИД на работник: ");
             String employ_id = this.scanner.nextLine();
 
-            System.out.print("Въведете ново ИМЕ на работник: ");
+            System.out.print("Въведете НОВО ИМЕ на работник: ");
             String name = this.scanner.nextLine();
 
             Employ employ = new Employ();
@@ -108,6 +109,7 @@ public class EmployCRUD {
             employ.setName(name);
 
             boolean isUpdate = this.repositoryEmploy.updateEmploy(employ);
+
             if (isUpdate) {
                 System.out.println("УСПЕШНО ОБНОВИХТЕ РАБОТНИК !");
             } else {
@@ -122,11 +124,13 @@ public class EmployCRUD {
 
     public void deleteEmploy() throws Exception{
         System.out.println("!!!!!!! Изтриване на компания !!!!!!!");
+
         this.showAllEmploy();
         System.out.print("Въведете ИД на клиента: ");
         String client_id = this.scanner.nextLine();
 
         boolean isDeleted =  this.repositoryEmploy.deleteEmploy(client_id);
+
         if(isDeleted){
             System.out.println("УСПЕШНО ИЗТРИХТЕ РАБОТНИК !");
         }else {
@@ -136,6 +140,7 @@ public class EmployCRUD {
 
 
     public void showAllEmploy() throws Exception{
+        System.out.println("!!!!!!! Преглед на всички рабтници !!!!!!!");
         ArrayList<Employ> employs = repositoryEmploy.getAllEmploys();
         for (int i = 0; i < employs.size(); i++) {
             System.out.println(employs.get(i));

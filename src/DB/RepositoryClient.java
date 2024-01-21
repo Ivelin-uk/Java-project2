@@ -30,7 +30,7 @@ public class RepositoryClient extends Repository{
         return companyClients;
     }
 
-    public ArrayList<Client> getClientsAllClients() throws Exception {
+    public ArrayList<Client> getAllClients() throws Exception {
         ArrayList<Client> companyClients = new ArrayList<>();
 
         String sql = "SELECT * FROM clients";

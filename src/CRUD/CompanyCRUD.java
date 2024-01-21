@@ -1,9 +1,6 @@
 package CRUD;
 
-import DB.RepositoryClient;
-import DB.RepositoryCompany;
-import DB.RepositoryEmploy;
-import DB.RepositoryTransport;
+import DB.*;
 import MODELS.Client;
 import MODELS.Company;
 import MODELS.Employ;
@@ -18,12 +15,14 @@ public class CompanyCRUD {
     RepositoryClient repositoryClient;
     RepositoryEmploy repositoryEmploy;
     RepositoryTransport repositoryTransport;
+    RepositoryVehicle repositoryVehicle;
     public CompanyCRUD()  throws Exception{
         this.scanner = new Scanner(System.in);
         this.repositoryCompany = new RepositoryCompany();
         this.repositoryClient = new RepositoryClient();
         this.repositoryEmploy = new RepositoryEmploy();
         this.repositoryTransport = new RepositoryTransport();
+        this.repositoryVehicle = new RepositoryVehicle();
     }
 
     public void menu(){
@@ -76,46 +75,63 @@ public class CompanyCRUD {
     }
 
     public void insertCompany() throws Exception{
-        System.out.println("!!!!!!! Добавяне на компания !!!!!!!");
-        System.out.print("НОМЕР НА КОМПАНИЯТА: ");
-        String id = this.scanner.nextLine();
-        System.out.print("ИМЕ НА КОМПАНИЯТА НА КОМПАНИЯТА: ");
-        String company_name = this.scanner.nextLine();
+        try {
+            System.out.println("!!!!!!! Добавяне на компания !!!!!!!");
 
-        Company company = new Company(id,company_name);
-        boolean isDeleted = repositoryCompany.insertCompany(company);
+            System.out.print("Въведете ИД на компануята: ");
+            String id = this.scanner.nextLine();
 
-        if(isDeleted){
-            System.out.println("УСПЕШНО ДОБАВИХТЕ КОМПАНИЯТА !");
-        }else {
-            System.out.println("НЯМА НАМЕРЕНА КОМПАНИЯ С ТОВА ИД: " + id);
+            System.out.print("Въведете ИМЕ на компанията: ");
+            String company_name = this.scanner.nextLine();
+
+            Company company = new Company(id,company_name);
+
+            boolean isDeleted = repositoryCompany.insertCompany(company);
+
+            if(isDeleted){
+                System.out.println("УСПЕШНО ДОБАВИХТЕ КОМПАНИЯТА !");
+            }else {
+                System.out.println("ГРЕШКА");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void updateCompany() throws Exception{
-        System.out.println("!!!!!!! Редактиране на компания !!!!!!!");
-        this.showAllCompanies();
-        System.out.print("Въведете ИД на компанията: ");
-        String id = this.scanner.nextLine();
-        System.out.println("Ново ИМЕ на компанията: ");
-        String newName = this.scanner.nextLine();
+        try {
+            System.out.println("!!!!!!! Редактиране на компания !!!!!!!");
 
-        Company company = new Company(id,newName);
-        boolean isUpdate =  this.repositoryCompany.updateCompany(company);
-        if(isUpdate){
-            System.out.println("УСПЕШНО ОБНОВИХТЕ КОМПАНИЯТА !");
-        }else {
-            System.out.println("НЯМА НАМЕРЕНА КОМПАНЯИЯ С ТОВА ИД: " + id);
+            this.showAllCompanies();
+            System.out.print("Въведете НОВО ИД на компанията: ");
+            String id = this.scanner.nextLine();
+
+            System.out.println("Въведете НОВО ИМЕ на компанията: ");
+            String newName = this.scanner.nextLine();
+
+            Company company = new Company(id, newName);
+
+            boolean isUpdate = this.repositoryCompany.updateCompany(company);
+
+            if (isUpdate) {
+                System.out.println("УСПЕШНО ОБНОВИХТЕ КОМПАНИЯТА !");
+            } else {
+                System.out.println("НЯМА НАМЕРЕНА КОМПАНЯИЯ С ТОВА ИД: " + id);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void deleteCompany() throws Exception{
         System.out.println("!!!!!!! Изтриване на компания !!!!!!!");
+
         this.showAllCompanies();
         System.out.print("Въведете ИД на компанията: ");
         String id = this.scanner.nextLine();
 
         boolean isDeleted =  this.repositoryCompany.deleteCompany(id);
+
         if(isDeleted){
             System.out.println("УСПЕШНО ИЗТРИХТЕ КОМПАНИЯТА !");
         }else {
@@ -132,7 +148,6 @@ public class CompanyCRUD {
     }
 
     public String fullInfoCompany() throws Exception{
-        System.out.println("!!!!!!! ПРЕГЛЕД НА ВСИЧКО КОМПАНИИИ !!!!!!!");
         this.showAllCompanies();
         System.out.print("Въведете ИД на компанията: ");
         String id = this.scanner.nextLine();
@@ -159,25 +174,27 @@ public class CompanyCRUD {
         result += " -- РАБОТНИЦИ НА КОМПАНИЯТА: ";
         result += "\n";
 
-        ArrayList<Employ> employs =  this.repositoryEmploy.getEmploiesOnCompany(id);
+        ArrayList<Employ> employs =  this.repositoryEmploy.getEmployeesOnCompany(id);
         for (int i = 0; i < employs.size(); i++) {
             result += employs.get(i).toString();
             result += "\n";
         }
 
         result += "\n";
-        result += " -- РАБОТНИЦИ НА КОМПАНИЯТА: ";
+        result += " -- ТРАНСПОРТИ НА КОМПАНИЯТА:  ";
         result += "\n";
+
+        ArrayList<Transport> transports =  this.repositoryTransport.getAllTransport(Integer.parseInt(id));
+        for (int i = 0; i < transports.size(); i++) {
+            result += transports.get(i).toString();
+            result += "\n";
+        }
 
         result += "\n";
         result += " -- ТРАНСПОРТИ НА КОМПАНИЯТА:  ";
         result += "\n";
 
-        ArrayList<Transport> transports =  this.repositoryTransport.getAllTransports(Integer.parseInt(id));
-        for (int i = 0; i < transports.size(); i++) {
-            result += transports.get(i).toString();
-            result += "\n";
-        }
+
 
         return result;
     }

@@ -8,6 +8,7 @@ import MODELS.Company;
 import MODELS.Employ;
 import MODELS.Transport;
 
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,16 +36,38 @@ public class TransportCRUD {
     public void menu(){
         System.out.println("-------------------------------------");
         System.out.println("!!!!!!! Добавяне на транспорт !!!!!!!");
+        System.out.println("1 . Добавяне на транспорт");
+        System.out.println("2 . Изтриване на транспорт");
+        System.out.println("3 . Преглед на всички транспорти");
         System.out.println("-------------------------------------");
     }
 
     public void start() throws Exception{
         this.menu();
-        this.insertTransport();
+        System.out.print("Въведете команда: ");
+
+        int command = Integer.parseInt(scanner.nextLine());
+        while (true) {
+            if(command == 1){
+                this.insertTransport();
+            }
+
+            if(command == 2){
+                this.deleteTransport();
+            }
+
+            if(command == 3){
+                this.showAllTransports();
+            }
+
+            this.menu();
+            System.out.print("Въведете команда: ");
+            command = Integer.parseInt(scanner.nextLine());
+        }
     }
     public void insertTransport() throws Exception{
-
         try {
+            System.out.println("!!!!!!! Добавяне на транспорт !!!!!!!");
             System.out.print("Въведете начална точка:");
             String start_point = scanner.nextLine();
 
@@ -104,6 +127,26 @@ public class TransportCRUD {
 
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+    public void deleteTransport() throws Exception{
+        System.out.println("!!!!!!! Изтриване на транспорт !!!!!!!");
+        this.showAllTransports();
+        System.out.print("Въведете ИД на танспорта: ");
+        String id = this.scanner.nextLine();
+        boolean isDeleted =  this.repositoryTransport.deleteTransport(id);
+        if(isDeleted){
+            System.out.println("УСПЕШНО ИЗТРИХТЕ РАБОТНИК !");
+        }else {
+            System.out.println("НЯМА НАМЕРЕНА ТРАНСПОРТ С ТОВА ИД: " + id);
+        }
+    }
+
+    public void showAllTransports() throws Exception{
+        System.out.println("!!!!!!! Преглед на всички рабтници !!!!!!!");
+        ArrayList<Transport> employs = repositoryTransport.getAllTransport();
+        for (int i = 0; i < employs.size(); i++) {
+            System.out.println(employs.get(i));
         }
     }
 }
