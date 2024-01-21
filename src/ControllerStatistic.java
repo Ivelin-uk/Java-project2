@@ -13,7 +13,7 @@ public class ControllerStatistic {
         System.out.println("-------------------------------------------------------------------");
         System.out.println("------------------------- КОМПАНИЯ МЕНЮ(ститистика) ---------------");
         System.out.println("--------------------------------------------------------------------");
-        System.out.println("1. Извади подробна информация за компания в файл");
+        System.out.println("1. Извади подробна информация за компания!");
 
         System.out.println("2. Изход");
         System.out.print("Въведете команда от 1 до 2: ");
@@ -25,7 +25,8 @@ public class ControllerStatistic {
             int command = Integer.parseInt(scanner.nextLine());
 
             if(command == 1 ){
-                Statistic.companyInfoFile();
+                Statistic statistic = new Statistic();
+                statistic.companyFillInfo();
             }
 
             if(command == 2){

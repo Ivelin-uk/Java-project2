@@ -1,19 +1,30 @@
 package STATISTIC;
 
+import CRUD.CompanyCRUD;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Statistic {
-    public static void companyInfoFile() {
-        // Создаем уникальное имя файла на основе текущего времени
-        String fileName = "src/STATISTIC/FILES/" + generateFileName();
+    CompanyCRUD companyCRUD;
+    Scanner scanner;
+    public Statistic() throws  Exception{
+        this.companyCRUD = new CompanyCRUD();
+        this.scanner = new Scanner(System.in);
+    }
+    public  void companyFillInfo() throws Exception {
+        companyCRUD.showAllCompanies();
+        System.out.println("Въведете ИД на компания: ");
+        String id = scanner.nextLine();
 
+        String fileName = "src/STATISTIC/FILES/" + generateFileName();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            // Ваш код для записи в файл
-            String content = "Пример текста для записи в новый файл.";
+
+            String content = companyCRUD.strCurrentCompany(id);;
             writer.write(content);
 
             System.out.println("Успешно записан в файл: " + fileName);
@@ -23,7 +34,7 @@ public class Statistic {
         }
     }
 
-    private static String generateFileName() {
+    private  String generateFileName() {
         // Используем текущее время для формирования уникального имени файла
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = dateFormat.format(new Date());

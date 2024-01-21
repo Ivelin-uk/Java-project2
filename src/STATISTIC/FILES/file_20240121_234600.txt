@@ -1,0 +1,15 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----ПОДРОБНА ИНФОРМАЦИЯ НА КОМПАНИЯ -----
+КОМПАНИЯ - ИД: 44 ИМЕ: Ivanovi 001
+ -- КЛИЕНТИ НА КОМПАНИЯТА: 
+КЛИЕНТ - ИД: 5, ИМЕ НА КЛИЕНТА: Pesho 01, ДЛЪЖНИК: да 
+КЛИЕНТ - ИД: 6, ИМЕ НА КЛИЕНТА: Ivan, ДЛЪЖНИК: да 
+
+ -- РАБОТНИЦИ НА КОМПАНИЯТА: 
+РАБОТНИК - ИД: 4 ИМЕ: DDASAds
+
+ -- ТРАНСПОРТИ НА КОМПАНИЯТА:  
+Transport{id=4, start_point='Sofia', end_point='Pravec', departure_date=2022-11-11, arrival_date=2024-11-11, cargo_type='SSee', total_weight=100.0, passenger_count=2, employ_id=2, company_id=44, price=500.0, client_id=3}
+
+ -- ПРОВОРНИ СТРЕДСТВА : 
+Vehicle{id=3, company_id=44, vehicle_type='Kamion', employ_id=2, register_number='3123124'}
