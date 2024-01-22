@@ -26,6 +26,7 @@ public class Main {
                     break;
                 }
 
+
                 showMainMenu();
                 input = Integer.parseInt(scanner.next());
             }
