@@ -147,7 +147,7 @@ public class CompanyCRUD {
     public String strCurrentCompany(String id) throws Exception{
 
         Company company = this.repositoryCompany.getCompanyById(id);
-        String result = "!!!!!!!!!!! === ПОДРОБНА ИНФОРМАЦИЯ НА КОМПАНИЯ { ИД } = " + company.getId() + "{ ИМЕ } " + company.getCompany_name();
+        String result = "!!!!!!!!!!! === ПОДРОБНА ИНФОРМАЦИЯ НА КОМПАНИЯ ИД: " + company.getId() + " ИМЕ: " + company.getCompany_name();
         result += "\n";
         result += "\n";
         result += "КЛИЕНТИ НА КОМПАНИЯТА";

@@ -1,0 +1,35 @@
+!!!!!!!!!!! === ПОДРОБНА ИНФОРМАЦИЯ НА КОМПАНИЯ { ИД } = 1{ ИМЕ } Ivanovi01
+
+КЛИЕНТИ НА КОМПАНИЯТА
+--- КЛИЕНТ { ИД: 2, ИМЕ НА КЛИЕНТА: Gosho01 }
+---Транспорти на клиента: Gosho01
+--- Брой: 0
+
+--- КЛИЕНТ { ИД: 3, ИМЕ НА КЛИЕНТА: Pesho }
+---Транспорти на клиента: Pesho
+--- Брой: 3
+--------- ТРАНСПОРТ {id=2, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='44asd', total_weight=444.0, passenger_count=5, employ_id=1, company_id=1, price=2000.0, client_id=3, payment=1}
+--------- ТРАНСПОРТ {id=2, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='44asd', total_weight=444.0, passenger_count=5, employ_id=1, company_id=1, price=2000.0, client_id=3, payment=1}
+--------- ТРАНСПОРТ {id=2, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='44asd', total_weight=444.0, passenger_count=5, employ_id=1, company_id=1, price=2000.0, client_id=3, payment=1}
+
+--- КЛИЕНТ { ИД: 4, ИМЕ НА КЛИЕНТА: Ivailo Stoikov }
+---Транспорти на клиента: Ivailo Stoikov
+--- Брой: 0
+
+
+РАБОТНИЦИ НА КОМПАНИЯТА
+--- РАБОТНИК { ИД: 1 ИМЕ: Ivan ИМЕ НА КОМПАНИЯТА: Ivanovi01 КВАЛИФИКАЦИЯ: m1 ПОВЕЧЕ ОТ 12 ЧОВЕКА: yes ЗАПЛАТА: 20000.0 }
+---Транспорти на работника: Gosho01
+---Брой: 3
+--------- ТРАНСПОРТ {id=1, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='afs', total_weight=44.0, passenger_count=5, employ_id=1, company_id=1, price=1000.0, client_id=3, payment=1}
+--------- ТРАНСПОРТ {id=1, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='afs', total_weight=44.0, passenger_count=5, employ_id=1, company_id=1, price=1000.0, client_id=3, payment=1}
+--------- ТРАНСПОРТ {id=1, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='afs', total_weight=44.0, passenger_count=5, employ_id=1, company_id=1, price=1000.0, client_id=3, payment=1}
+
+
+ТРАНСПОРТИ НА КОМПАНИЯТА 
+--- ТРАНСПОРТ {id=1, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='afs', total_weight=44.0, passenger_count=5, employ_id=1, company_id=1, price=1000.0, client_id=3, payment=1}
+--- ТРАНСПОРТ {id=2, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='44asd', total_weight=444.0, passenger_count=5, employ_id=1, company_id=1, price=2000.0, client_id=3, payment=1}
+--- ТРАНСПОРТ {id=3, start_point='Sofia', end_point='Varna', departure_date=2024-12-11, arrival_date=2024-12-11, cargo_type='fsds', total_weight=100.0, passenger_count=6, employ_id=1, company_id=1, price=500.0, client_id=3, payment=0}
+
+ПРЕВОЗНИ СРЕДСТВА
+Vehicle{id=1, company_id=1, vehicle_type='Камион', employ_id=1, register_number='223123дадс'}

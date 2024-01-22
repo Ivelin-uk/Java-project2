@@ -91,15 +91,6 @@ public class Employ {
         this.salary = salary;
     }
 
-    /*
-     private  int id;
-    private String name;
-    private int company_id;
-    private String qualification;
-    private String more_people;
-    private double salary;
-
-     */
 
     @Override
     public String toString() {
