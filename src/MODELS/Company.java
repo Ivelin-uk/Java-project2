@@ -7,9 +7,7 @@ public class Company {
     //id, company_name
     private String id;
     private String company_name;
-    private ArrayList<Employ> employs = new ArrayList<Employ>();
-    private ArrayList<Client> clients = new ArrayList<Client>();
-    private ArrayList<Transport> trasports = new ArrayList<Transport>();
+    private Double money;
 
     public Company(){
 
@@ -20,12 +18,10 @@ public class Company {
         this.setCompany_name(company_name);
     }
 
-    public Company(String id, String company_name, ArrayList<Employ> employs, ArrayList<Client> clients, ArrayList<Transport> trasports) throws Exception {
+    public Company(String id, String company_name, double money) throws Exception {
         this.setId(id);
         this.setCompany_name(company_name);
-        this.setEmploys(employs);
-        this.setClients(clients);
-        this.setTrasports(trasports);
+        this.setMoney(money);
     }
 
     public String getId() {
@@ -47,28 +43,12 @@ public class Company {
         this.company_name = company_name;
     }
 
-    public ArrayList<Employ> getEmploys() {
-        return employs;
+    public Double getMoney() {
+        return money;
     }
 
-    public void setEmploys(ArrayList<Employ> employs) {
-        this.employs = employs;
-    }
-
-    public ArrayList<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(ArrayList<Client> clients) {
-        this.clients = clients;
-    }
-
-    public ArrayList<Transport> getTrasports() {
-        return trasports;
-    }
-
-    public void setTrasports(ArrayList<Transport> trasports) {
-        this.trasports = trasports;
+    public void setMoney(Double money) {
+        this.money = money;
     }
 
     @Override

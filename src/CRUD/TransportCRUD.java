@@ -77,6 +77,9 @@ public class TransportCRUD {
             System.out.println("!!!!!!! Добавяне на транспорт !!!!!!!");
             clientCRUD.showAllClient();
 
+            System.out.print("Въведете ИД на клиента:");
+            int client_id = Integer.parseInt(scanner.nextLine());
+
             System.out.print("Въведете начална точка:");
             String start_point = scanner.nextLine();
 
@@ -93,10 +96,10 @@ public class TransportCRUD {
 
             Date arrival_date = new SimpleDateFormat("dd.MM.yyyy").parse(arr_date_str);
 
-            //РАБОТНИЛ
+            //РАБОТНИК
             this.employCRUD.showAllEmploy();
             System.out.print("Избере ИД на работника :");
-            int employee_id = scanner.nextInt();
+            int employee_id = Integer.parseInt(scanner.nextLine());
 
             Employ employ = repositoryEmploy.getEmployById(employee_id);
 
@@ -104,17 +107,14 @@ public class TransportCRUD {
             String cargo_type = scanner.nextLine();
 
             System.out.print("Въведете общо тегло: ");
-            double total_weight = scanner.nextDouble();
+            double total_weight = Double.parseDouble(scanner.nextLine());
 
             System.out.print("Въведете брой пътници: ");
-            int passenger_count = scanner.nextInt();
+            int passenger_count = Integer.parseInt(scanner.nextLine());
 
             if(!employ.getMore_people().equals("yes")){
                 throw  new Exception("Този работник не може да провозва повече от 12 пътника");
             }
-
-            System.out.print("Въведе ИД на клиента: ");
-            int client_id = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Цена: ");
             double price = Double.parseDouble(scanner.nextLine());

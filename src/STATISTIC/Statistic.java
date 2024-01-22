@@ -18,7 +18,7 @@ public class Statistic {
     }
     public void createFileCompanyFillInfo(String id) throws Exception {
 
-        String fileName = "src/STATISTIC/FILES/" + generateFileName();
+        String fileName = "src/STATISTIC/FILES/" + generateFileNameFullCompanyInfo();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 
             String content = companyCRUD.strCurrentCompany(id);;
@@ -30,12 +30,29 @@ public class Statistic {
             System.err.println("Ошибка при записи в файл: " + e.getMessage());
         }
     }
-
-    private  String generateFileName() {
+    private  String generateFileNameFullCompanyInfo() {
         // Используем текущее время для формирования уникального имени файла
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = dateFormat.format(new Date());
         return "Company_full_info_" + timestamp + ".txt";
+    }
+
+    public void createFileSort(String text) throws Exception {
+
+        String fileName = "src/STATISTIC/FILES/" + generateFileSort();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+
+            writer.write(text);
+            System.out.println("Успешно записан в файл: " + fileName);
+
+        } catch (IOException e) {
+            System.err.println("Ошибка при записи в файл: " + e.getMessage());
+        }
+    }
+    private  String generateFileSort() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = dateFormat.format(new Date());
+        return "Sort_" + timestamp + ".txt";
     }
 }
 

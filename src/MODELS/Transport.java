@@ -195,6 +195,7 @@ public class Transport {
                 ", company_id=" + company_id +
                 ", price=" + price +
                 ", client_id=" + client_id +
+                ", payment=" + payment +
                 '}';
     }
 }

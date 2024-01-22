@@ -13,6 +13,8 @@ public class ControllerStatistic {
 
     CompanyCRUD companyCRUD;
     RepositoryCompany repositoryCompany;
+
+    Statistic statistic = new Statistic();
     public ControllerStatistic() throws Exception{
         this.repositoryCompany = new RepositoryCompany();
         this.companyCRUD = new CompanyCRUD();
@@ -25,7 +27,7 @@ public class ControllerStatistic {
         System.out.println("1. Извади подробна информация за компания!");
         System.out.println("2. Сортиране");
         System.out.println("3. Изход");
-        System.out.print("Въведете команда от 1 до 2: ");
+        System.out.print("Въведете команда от 1 до 3: ");
     }
     public void ControllerMenu() throws Exception{
 
@@ -33,9 +35,7 @@ public class ControllerStatistic {
             this.menu();
             int command = Integer.parseInt(scanner.nextLine());
             if(command == 1 ){
-
                 companyCRUD.showAllCompanies();
-
                 System.out.print("Въведете ИД на компания: ");
                 String id = scanner.nextLine();
                 String content = companyCRUD.strCurrentCompany(id);;
@@ -44,38 +44,59 @@ public class ControllerStatistic {
                 System.out.print("Запиши в файл: [yes/no]: ");
                 String write = scanner.nextLine();
                 if(write.equals("yes")){
-                    Statistic statistic = new Statistic();
                     statistic.createFileCompanyFillInfo(id);
                 }
             }
 
             if(command == 2){
-                this.sort();
+                System.out.println("-------Сортиране---------");
+                System.out.println("1. Компаниите по име");
+                System.out.println("2. Компаниите по приходи");
+                System.out.println("3. Служителите по квалификация");
+                System.out.println("4. Служителите по заплата");
+                System.out.println("5. За превозите по дестинация");
+
+                System.out.print("Избери: ");
+                int com = Integer.parseInt(scanner.nextLine());
+                if(com == 1){
+                    System.out.println("-------- Компаниите подредени по имена ---------");
+                    ArrayList<Company> companies =  repositoryCompany.getAllCompaniesOrderByName();
+                    String printResult = "";
+                    for (int i = 0; i < companies.size() ; i++) {
+                        System.out.println(companies.get(i));
+                        printResult += companies.get(i);
+                        printResult += "\n";
+                    }
+
+                    System.out.print("Запиши в файл: [yes/no]: ");
+                    String write = scanner.nextLine();
+                    if(write.equals("yes")){
+                        statistic.createFileSort(printResult);
+                    }
+                }
+
+                if(com == 2){
+                    System.out.println("-------- Компаниите по приходи ---------");
+                    ArrayList<Company> companies =  repositoryCompany.getAllCompaniesOrderMoney();
+                    String printResult = "";
+                    for (int i = 0; i < companies.size() ; i++) {
+                        String row = companies.get(i) + " ПРИХОДИ: " + companies.get(i).getMoney();
+                        System.out.println(row);
+                        printResult += "\n";
+                    }
+
+                    System.out.print("Запиши в файл: [yes/no]: ");
+                    String write = scanner.nextLine();
+                    if(write.equals("yes")) {
+                        statistic.createFileSort(printResult);
+                    }
+                }
+
             }
 
             if(command == 3){
                 break;
             }
-        }
-    }
-
-    public void sort() throws Exception{
-        System.out.println("-------Сортиране---------");
-        System.out.println("1. Компаниите по име");
-        System.out.println("2. Компаниите по приходи");
-        System.out.println("3. Служителите по квалификация");
-        System.out.println("4. Служителите по заплата");
-        System.out.println("5. За превозите по дестинация");
-        System.out.print("Избери: ");
-        int com = scanner.nextInt();
-
-        if(com == 1){
-            System.out.println("Test");
-            ArrayList<Company> companies =  repositoryCompany.getAllCompaniesOrderByName();
-            System.out.println(companies);
-        }
-        if(com == 2){
-
         }
     }
 }

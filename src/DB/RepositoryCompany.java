@@ -117,4 +117,30 @@ public class RepositoryCompany extends  Repository{
 
         return companies;
     }
+
+    public ArrayList<Company> getAllCompaniesOrderMoney() throws Exception
+    {
+        Statement stmt = this.conn.createStatement();
+        String sql = "SELECT\n" +
+                "\tcompany_id AS id,\n" +
+                "\t(SELECT company_name FROM companies WHERE id = t.company_id ) AS company_name,\n" +
+                "\tSUM(price) AS money\n" +
+                "FROM transports AS t\n" +
+                "WHERE payment = 1\n" +
+                "GROUP BY t.company_id\n" +
+                "ORDER BY money DESC";
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        ArrayList<Company> companies = new ArrayList<Company>();
+        while (resultSet.next()) {
+            String id = resultSet.getString("id");
+            String name = resultSet.getString("company_name");
+            double money = resultSet.getDouble("money");
+
+            Company company = new Company(id,name,money);
+            companies.add(company);
+        }
+
+        return companies;
+    }
 }
