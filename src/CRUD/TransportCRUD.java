@@ -76,20 +76,6 @@ public class TransportCRUD {
         try {
             System.out.println("!!!!!!! Добавяне на транспорт !!!!!!!");
             clientCRUD.showAllClient();
-            System.out.print("Въведе ИД на клента: ");
-            int client_id = Integer.parseInt(scanner.nextLine());
-
-            System.out.print("Цена: ");
-            double price = Double.parseDouble(scanner.nextLine());
-
-            System.out.print("Плати: [yes/on]: ");
-            String payment_info = scanner.nextLine();
-            int payment;
-            if(payment_info.equals("yes")){
-                payment = 1;
-            }else{
-                payment = 0;
-            }
 
             System.out.print("Въведете начална точка:");
             String start_point = scanner.nextLine();
@@ -107,6 +93,13 @@ public class TransportCRUD {
 
             Date arrival_date = new SimpleDateFormat("dd.MM.yyyy").parse(arr_date_str);
 
+            //РАБОТНИЛ
+            this.employCRUD.showAllEmploy();
+            System.out.print("Избере ИД на работника :");
+            int employee_id = scanner.nextInt();
+
+            Employ employ = repositoryEmploy.getEmployById(employee_id);
+
             System.out.print("Въведете вид на товара: ");
             String cargo_type = scanner.nextLine();
 
@@ -116,13 +109,28 @@ public class TransportCRUD {
             System.out.print("Въведете брой пътници: ");
             int passenger_count = scanner.nextInt();
 
-            this.employCRUD.showAllEmploy();
-            System.out.print("Избере ИД на работника :");
-            int employee_id = scanner.nextInt();
+            if(!employ.getMore_people().equals("yes")){
+                throw  new Exception("Този работник не може да провозва повече то 12 пътнилка");
+            }
+
+            System.out.print("Въведе ИД на клента: ");
+            int client_id = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Цена: ");
+            double price = Double.parseDouble(scanner.nextLine());
+
+            System.out.print("Плати: [yes/on]: ");
+            String payment_info = scanner.nextLine();
+            int payment;
+            if(payment_info.equals("yes")){
+                payment = 1;
+            }else{
+                payment = 0;
+            }
 
             this.companyCRUD.showAllCompanies();
             System.out.print("Избере ИД на компанията :");
-            int company_id = scanner.nextInt();
+            int company_id = Integer.parseInt(scanner.nextLine());
 
             Transport transport = new Transport(
                     start_point,

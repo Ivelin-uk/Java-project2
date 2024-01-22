@@ -12,7 +12,11 @@ public class Employ {
     private String more_people;
     private double salary;
     RepositoryCompany repositoryCompany = new RepositoryCompany();
-    //Employ(name,company_id,qualification,more_people,salary);
+
+    public Employ() throws Exception {
+
+    }
+
     public Employ(String name, int company_id, String qualification, String more_people, double salary) throws Exception {
         this.setName(name);
         this.setCompany_id(company_id);

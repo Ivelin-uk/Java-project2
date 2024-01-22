@@ -1,6 +1,7 @@
 package DB;
 
 import MODELS.Client;
+import MODELS.Company;
 import MODELS.Employ;
 
 import java.sql.*;
@@ -56,7 +57,32 @@ public class RepositoryEmploy extends Repository{
         return companyClients;
     }
 
-//String name, int company_id, String qualification, String more_people, double salary)
+    public Employ getEmployById(int id) throws Exception{
+        String sql = "SELECT * FROM employees WHERE id = ?";
+        PreparedStatement pstmt = this.conn.prepareStatement(sql);
+        pstmt.setInt(1, id);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        Employ employ = new Employ();
+        if (rs.next()) {
+            int employ_id = rs.getInt("id");
+            String name = rs.getString("name");
+            int db_company_id = rs.getInt("company_id");
+            String qualification = rs.getString("qualification");
+            String more_people = rs.getString("more_people");
+            double salary = rs.getDouble("salary");
+
+            employ.setId(employ_id);
+            employ.setName(name);
+            employ.setCompany_id(db_company_id);
+            employ.setQualification(qualification);
+            employ.setMore_people(more_people);
+            employ.setSalary(salary);
+        }
+
+        return employ;
+    }
     public boolean insertEmploy(Employ employ) throws Exception
     {
         String sql = "INSERT INTO employees (name, company_id,qualification,more_people,salary) VALUES (?, ?, ?, ?, ?)";

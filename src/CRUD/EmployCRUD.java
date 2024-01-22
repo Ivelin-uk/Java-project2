@@ -126,14 +126,8 @@ public class EmployCRUD {
             System.out.print("Въведете НОВА КЛАЛИФИКАЦИЯ на работник: ");
             String qualification = this.scanner.nextLine();
 
-            System.out.print("Превоз над 12 пътника [да/не]: ");
+            System.out.print("Превоз над 12 пътника [yes/ne]: ");
             String more_people = this.scanner.nextLine();
-            String more;
-            if(more_people.equals("да")){
-                more = "yes";
-            }else{
-                more = "no";
-            }
 
             System.out.print("НОВА Заплата: ");
             double salary = Double.parseDouble(scanner.nextLine());
