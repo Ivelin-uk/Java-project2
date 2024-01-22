@@ -3,7 +3,9 @@ import CRUD.CompanyCRUD;
 import CRUD.EmployCRUD;
 import CRUD.TransportCRUD;
 import DB.RepositoryCompany;
+import DB.RepositoryEmploy;
 import MODELS.Company;
+import MODELS.Employ;
 import STATISTIC.Statistic;
 
 import java.util.ArrayList;
@@ -14,10 +16,14 @@ public class ControllerStatistic {
     CompanyCRUD companyCRUD;
     RepositoryCompany repositoryCompany;
 
-    Statistic statistic = new Statistic();
+    RepositoryEmploy repositoryEmploy;
+
     public ControllerStatistic() throws Exception{
         this.repositoryCompany = new RepositoryCompany();
+
         this.companyCRUD = new CompanyCRUD();
+
+        this.repositoryEmploy = new RepositoryEmploy();
     }
     public void menu(){
         System.out.println();
@@ -44,6 +50,7 @@ public class ControllerStatistic {
                 System.out.print("Запиши в файл: [yes/no]: ");
                 String write = scanner.nextLine();
                 if(write.equals("yes")){
+                    Statistic statistic = new Statistic();
                     statistic.createFileCompanyFillInfo(id);
                 }
             }
@@ -54,7 +61,6 @@ public class ControllerStatistic {
                 System.out.println("2. Компаниите по приходи");
                 System.out.println("3. Служителите по квалификация");
                 System.out.println("4. Служителите по заплата");
-                System.out.println("5. За превозите по дестинация");
 
                 System.out.print("Избери: ");
                 int com = Integer.parseInt(scanner.nextLine());
@@ -71,6 +77,7 @@ public class ControllerStatistic {
                     System.out.print("Запиши в файл: [yes/no]: ");
                     String write = scanner.nextLine();
                     if(write.equals("yes")){
+                        Statistic statistic = new Statistic();
                         statistic.createFileSort(printResult);
                     }
                 }
@@ -88,14 +95,45 @@ public class ControllerStatistic {
                     System.out.print("Запиши в файл: [yes/no]: ");
                     String write = scanner.nextLine();
                     if(write.equals("yes")) {
+                        Statistic statistic = new Statistic();
                         statistic.createFileSort(printResult);
                     }
                 }
 
-            }
+                if(com == 3){
+                    System.out.println("-------- Служителите по квалификация ---------");
+                    ArrayList<Employ> employs =  repositoryEmploy.orderByEmployeesByQA();
+                    String printResult = "";
+                    for (int i = 0; i < employs.size() ; i++) {
+                        System.out.println(employs.get(i));
+                        printResult += "\n";
+                    }
 
-            if(command == 3){
-                break;
+                    System.out.print("Запиши в файл: [yes/no]: ");
+                    String write = scanner.nextLine();
+                    if(write.equals("yes")) {
+                        Statistic statistic = new Statistic();
+                        statistic.createFileSort(printResult);
+                    }
+
+                }
+
+                if(com == 4){
+                    System.out.println("-------- Служителите по заплата ---------");
+                    ArrayList<Employ> employs =  repositoryEmploy.orderByEmployeesBySalary();
+                    String printResult = "";
+                    for (int i = 0; i < employs.size() ; i++) {
+                        System.out.println(employs.get(i));
+                        printResult += "\n";
+                    }
+
+                    System.out.print("Запиши в файл: [yes/no]: ");
+                    String write = scanner.nextLine();
+                    if(write.equals("yes")) {
+                        Statistic statistic = new Statistic();
+                        statistic.createFileSort(printResult);
+                    }
+                }
             }
         }
     }

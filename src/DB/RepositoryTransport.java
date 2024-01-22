@@ -115,6 +115,38 @@ public class RepositoryTransport extends Repository{
         return transports;
     }
 
+    public ArrayList<Transport> getAllTransportOnEmploy(int employ_id) throws Exception {
+        ArrayList<Transport>  transports = new ArrayList<Transport>();
+
+        String sql = "SELECT * FROM transports WHERE employ_id = ?";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
+            pstmt.setInt(1, employ_id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Transport transport = new Transport(
+                            rs.getInt("id"),
+                            rs.getString("start_point"),
+                            rs.getString("end_point"),
+                            rs.getDate("departure_date"),
+                            rs.getDate("arrival_date"),
+                            rs.getString("cargo_type"),
+                            rs.getDouble("total_weight"),
+                            rs.getInt("passenger_count"),
+                            rs.getInt("employ_id"),
+                            rs.getInt("company_id"),
+                            rs.getDouble("price"),
+                            rs.getInt("client_id"),
+                            rs.getInt("payment")
+                    );
+                    transports.add(transport);
+                }
+            }
+        }
+
+        return transports;
+    }
+
     public ArrayList<Transport> getAllTransport() throws Exception {
         ArrayList<Transport>  transports = new ArrayList<Transport>();
 

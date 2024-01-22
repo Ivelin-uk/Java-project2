@@ -138,4 +138,48 @@ public class RepositoryEmploy extends Repository{
             return false;
         }
     }
+
+    public ArrayList<Employ> orderByEmployeesBySalary() throws Exception
+    {
+        Statement stmt = this.conn.createStatement();
+        String sql = "SELECT * FROM employees ORDER BY employees DESC";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        ArrayList<Employ> employs = new ArrayList<Employ>();
+        while (rs.next()) {
+            int employ_id = rs.getInt("id");
+            String name = rs.getString("name");
+            int db_company_id = rs.getInt("company_id");
+            String qualification = rs.getString("qualification");
+            String more_people = rs.getString("more_people");
+            double salary = rs.getDouble("salary");
+
+            Employ companyEmploy = new Employ(employ_id,name, db_company_id,qualification,more_people,salary);
+            employs.add(companyEmploy);
+        }
+
+        return employs;
+    }
+
+    public ArrayList<Employ> orderByEmployeesByQA() throws Exception
+    {
+        Statement stmt = this.conn.createStatement();
+        String sql = "SELECT * FROM employees ORDER BY qualification";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        ArrayList<Employ> employs = new ArrayList<Employ>();
+        while (rs.next()) {
+            int employ_id = rs.getInt("id");
+            String name = rs.getString("name");
+            int db_company_id = rs.getInt("company_id");
+            String qualification = rs.getString("qualification");
+            String more_people = rs.getString("more_people");
+            double salary = rs.getDouble("salary");
+
+            Employ companyEmploy = new Employ(employ_id,name, db_company_id,qualification,more_people,salary);
+            employs.add(companyEmploy);
+        }
+
+        return employs;
+    }
 }

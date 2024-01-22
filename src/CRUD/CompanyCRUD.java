@@ -159,9 +159,17 @@ public class CompanyCRUD {
         ArrayList<Client> clients =  this.repositoryClient.getClientsOnCompany(id);
         for (int i = 0; i < clients.size(); i++) {
             result += clients.get(i).toString();
+            result += "=== Транспорти на клиента: " + clients.get(i).getName_client();
             result += "\n";
+            result += "=== Брой: " + clients.size();
+            result += "\n";
+            ArrayList<Transport> transportsOnClient = this.repositoryTransport.getAllTransportOnClient(Integer.parseInt(clients.get(i).getId()));
+            for (int j = 0; j < transportsOnClient.size(); j++) {
+                result += "----------" + transportsOnClient.get(i);
+                result += "\n";
+            }
         }
-
+        //getAllTransportOnEmploy
         result += "\n";
         result += " -- РАБОТНИЦИ НА КОМПАНИЯТА: ";
         result += "\n";
@@ -170,6 +178,14 @@ public class CompanyCRUD {
         for (int i = 0; i < employs.size(); i++) {
             result += employs.get(i).toString();
             result += "\n";
+            result += "=== Транспорти на работника: " + clients.get(i).getName_client();
+            result += "\n";
+            result += "=== Брой: " + employs.size();
+            ArrayList<Transport> transportsOnEmploy = this.repositoryTransport.getAllTransportOnEmploy(employs.get(i).getId());
+            for (int j = 0; j < transportsOnEmploy.size(); j++) {
+                result += "----------" + transportsOnEmploy.get(i);
+                result += "\n";
+            }
         }
 
         result += "\n";
