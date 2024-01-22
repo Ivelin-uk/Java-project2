@@ -48,7 +48,7 @@ public class ControllerCRUD {
                 transportCRUD.start();
             }
 
-            if(command == 5){
+            if(command == 6){
                 break;
             }
         }

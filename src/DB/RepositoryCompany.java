@@ -28,6 +28,19 @@ public class RepositoryCompany extends  Repository{
 
         return company;
     }
+
+    public String getCompanyNameById(int company_id) throws Exception{
+        String sql = "SELECT company_name FROM companies WHERE id = ?";
+        PreparedStatement pstmt = this.conn.prepareStatement(sql);
+        pstmt.setInt(1, company_id);
+
+        ResultSet resultSet = pstmt.executeQuery();
+        String company_name = "";
+        if (resultSet.next()) {
+            company_name = resultSet.getString("company_name");
+        }
+        return company_name;
+    }
     public ArrayList<Company> getAllCompanies() throws Exception
     {
         Statement stmt = this.conn.createStatement();
@@ -85,5 +98,23 @@ public class RepositoryCompany extends  Repository{
         } else {
             return false;
         }
+    }
+
+    public ArrayList<Company> getAllCompaniesOrderByName() throws Exception
+    {
+        Statement stmt = this.conn.createStatement();
+        String sql = "SELECT * FROM companies ORDER BY company_name";
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        ArrayList<Company> companies = new ArrayList<Company>();
+        while (resultSet.next()) {
+            String id = resultSet.getString("id");
+            String name = resultSet.getString("company_name");
+
+            Company company = new Company(id,name);
+            companies.add(company);
+        }
+
+        return companies;
     }
 }

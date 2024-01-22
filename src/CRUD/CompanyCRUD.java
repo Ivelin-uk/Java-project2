@@ -29,8 +29,7 @@ public class CompanyCRUD {
         System.out.println("2. Редактиране на компания");
         System.out.println("3. Изтриване на компания");
         System.out.println("4. Преглед на всички компании");
-        System.out.println("5. Подробна информация на компания");
-        System.out.println("6. Изход");
+        System.out.println("5. Изход");
         System.out.println();
     }
 
@@ -59,10 +58,6 @@ public class CompanyCRUD {
                 }
 
                 if(command == 5){
-                    System.out.println(fullInfoCompany());
-                }
-
-                if(command == 6){
                     break;
                 }
             }catch (Exception e){

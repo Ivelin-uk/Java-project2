@@ -16,10 +16,7 @@ public class Statistic {
         this.companyCRUD = new CompanyCRUD();
         this.scanner = new Scanner(System.in);
     }
-    public  void companyFillInfo() throws Exception {
-        companyCRUD.showAllCompanies();
-        System.out.println("Въведете ИД на компания: ");
-        String id = scanner.nextLine();
+    public void createFileCompanyFillInfo(String id) throws Exception {
 
         String fileName = "src/STATISTIC/FILES/" + generateFileName();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
@@ -38,7 +35,7 @@ public class Statistic {
         // Используем текущее время для формирования уникального имени файла
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = dateFormat.format(new Date());
-        return "file_" + timestamp + ".txt";
+        return "Company_full_info_" + timestamp + ".txt";
     }
 }
 
