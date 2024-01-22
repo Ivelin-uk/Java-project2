@@ -53,6 +53,6 @@ public class Company {
 
     @Override
     public String toString() {
-        return  "КОМПАНИЯ - ИД: " + id + " ИМЕ: " + company_name;
+        return  "--- { КОМПАНИЯ - ИД: " + id + " ИМЕ: " + company_name + " }";
     }
 }

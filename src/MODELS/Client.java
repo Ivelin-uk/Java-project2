@@ -51,7 +51,7 @@ public class Client {
 
     @Override
     public String toString() {
-        String r = "КЛИЕНТ - ИД: " + id + ", ИМЕ НА КЛИЕНТА: " + name_client;
+        String r = "--- КЛИЕНТ { ИД: " + id + ", ИМЕ НА КЛИЕНТА: " + name_client + " }";
 
         return r;
     }

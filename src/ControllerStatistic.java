@@ -135,6 +135,10 @@ public class ControllerStatistic {
                     }
                 }
             }
+
+            if(command == 3){
+                break;
+            }
         }
     }
 }

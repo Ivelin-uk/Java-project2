@@ -182,7 +182,7 @@ public class Transport {
 
     @Override
     public String toString() {
-        return "Transport{" +
+        return "--- ТРАНСПОРТ {" +
                 "id=" + id +
                 ", start_point='" + start_point + '\'' +
                 ", end_point='" + end_point + '\'' +

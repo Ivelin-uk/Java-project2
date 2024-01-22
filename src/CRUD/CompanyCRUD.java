@@ -145,51 +145,52 @@ public class CompanyCRUD {
         return strCurrentCompany(id);
     }
     public String strCurrentCompany(String id) throws Exception{
-        String result = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-        result += "\n";
-        result += "----ПОДРОБНА ИНФОРМАЦИЯ НА КОМПАНИЯ -----";
-        result += "\n";
+
         Company company = this.repositoryCompany.getCompanyById(id);
-        result += company.toString();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        String result = "!!!!!!!!!!! === ПОДРОБНА ИНФОРМАЦИЯ НА КОМПАНИЯ { ИД } = " + company.getId() + "{ ИМЕ } " + company.getCompany_name();
         result += "\n";
-        result += " -- КЛИЕНТИ НА КОМПАНИЯТА: ";
+        result += "\n";
+        result += "КЛИЕНТИ НА КОМПАНИЯТА";
         result += "\n";
 
         ArrayList<Client> clients =  this.repositoryClient.getClientsOnCompany(id);
         for (int i = 0; i < clients.size(); i++) {
             result += clients.get(i).toString();
-            result += "=== Транспорти на клиента: " + clients.get(i).getName_client();
             result += "\n";
-            result += "=== Брой: " + clients.size();
+            result += "---Транспорти на клиента: " + clients.get(i).getName_client();
             result += "\n";
             ArrayList<Transport> transportsOnClient = this.repositoryTransport.getAllTransportOnClient(Integer.parseInt(clients.get(i).getId()));
+            result += "--- Брой: " + transportsOnClient.size();
+            result += "\n";
             for (int j = 0; j < transportsOnClient.size(); j++) {
-                result += "----------" + transportsOnClient.get(i);
+                result += "------" + transportsOnClient.get(i);
                 result += "\n";
             }
+            result += "\n";
         }
-        //getAllTransportOnEmploy
+
         result += "\n";
-        result += " -- РАБОТНИЦИ НА КОМПАНИЯТА: ";
+        result += "РАБОТНИЦИ НА КОМПАНИЯТА";
         result += "\n";
 
         ArrayList<Employ> employs =  this.repositoryEmploy.getEmployeesOnCompany(id);
         for (int i = 0; i < employs.size(); i++) {
             result += employs.get(i).toString();
             result += "\n";
-            result += "=== Транспорти на работника: " + clients.get(i).getName_client();
+            result += "---Транспорти на работника: " + clients.get(i).getName_client();
             result += "\n";
-            result += "=== Брой: " + employs.size();
             ArrayList<Transport> transportsOnEmploy = this.repositoryTransport.getAllTransportOnEmploy(employs.get(i).getId());
+            result += "---Брой: " + transportsOnEmploy.size();
+            result += "\n";
             for (int j = 0; j < transportsOnEmploy.size(); j++) {
-                result += "----------" + transportsOnEmploy.get(i);
+                result += "------" + transportsOnEmploy.get(i);
                 result += "\n";
             }
+            result += "\n";
         }
 
         result += "\n";
-        result += " -- ТРАНСПОРТИ НА КОМПАНИЯТА:  ";
+        result += "ТРАНСПОРТИ НА КОМПАНИЯТА ";
         result += "\n";
 
         ArrayList<Transport> transports =  this.repositoryTransport.getAllTransportOnCompany(Integer.parseInt(id));
@@ -199,7 +200,7 @@ public class CompanyCRUD {
         }
 
         result += "\n";
-        result += " -- ПРЕВОЗНИ СРЕДСТВА : ";
+        result += "ПРЕВОЗНИ СРЕДСТВА";
         result += "\n";
 
         ArrayList<Vehicle> vehicles =  this.repositoryVehicle.getVehicleOnCompany(id);
