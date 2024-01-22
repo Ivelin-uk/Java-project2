@@ -110,10 +110,10 @@ public class TransportCRUD {
             int passenger_count = scanner.nextInt();
 
             if(!employ.getMore_people().equals("yes")){
-                throw  new Exception("Този работник не може да провозва повече то 12 пътнилка");
+                throw  new Exception("Този работник не може да провозва повече от 12 пътника");
             }
 
-            System.out.print("Въведе ИД на клента: ");
+            System.out.print("Въведе ИД на клиента: ");
             int client_id = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Цена: ");
@@ -129,7 +129,7 @@ public class TransportCRUD {
             }
 
             this.companyCRUD.showAllCompanies();
-            System.out.print("Избере ИД на компанията :");
+            System.out.print("Изберете ИД на компанията :");
             int company_id = Integer.parseInt(scanner.nextLine());
 
             Transport transport = new Transport(
@@ -148,7 +148,7 @@ public class TransportCRUD {
             );
 
             boolean isAdded = repositoryTransport.insertTransport(transport);
-            System.out.println(isAdded);
+
             if(isAdded){
                 System.out.println("УСПЕШНО ДОБАВИХТЕ ТРАНСПОРТ !");
             }else {
@@ -174,7 +174,7 @@ public class TransportCRUD {
     }
 
     public void showAllTransports() throws Exception{
-        System.out.println("!!!!!!! Преглед на вички транспорти !!!!!!!");
+        System.out.println("!!!!!!! Преглед на всички транспорти !!!!!!!");
         ArrayList<Transport> transports = repositoryTransport.getAllTransport();
         for (int i = 0; i < transports.size(); i++) {
             System.out.println(transports.get(i));

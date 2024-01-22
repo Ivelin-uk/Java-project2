@@ -103,6 +103,6 @@ public class Employ {
 
     @Override
     public String toString() {
-        return "РАБОТНИК { ИД: " + id + " ИМЕ: " + name + " ИМЕ НАКОМПАНИЯТА: " +  company_name +  " КЛАЛИФИКАЦИЯ: " + qualification + " ПОВЕЧЕ ОТ 12 ЧОВЕКА: " + more_people + " ЗАПЛАТА: " + salary + " }";
+        return "РАБОТНИК { ИД: " + id + " ИМЕ: " + name + " ИМЕ НА КОМПАНИЯТА: " +  company_name +  " КВАЛИФИКАЦИЯ: " + qualification + " ПОВЕЧЕ ОТ 12 ЧОВЕКА: " + more_people + " ЗАПЛАТА: " + salary + " }";
     }
 }

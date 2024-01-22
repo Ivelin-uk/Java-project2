@@ -33,11 +33,11 @@ public class VehicleCRUD {
 
     public void menu(){
         System.out.println();
-        System.out.println("--- Вывеждане, редактиране и изтриване на превозните средства, които са собственост на компанията ---");
+        System.out.println("--- Въвеждане, редактиране и изтриване на превозните средства, които са собственост на компанията ---");
         System.out.println("1. Добавяне на превозно средство");
         System.out.println("2. Редактиране на превозно средство");
         System.out.println("3. Изтриване на превозно средство");
-        System.out.println("4. Прегрлед на всички превозно средство");
+        System.out.println("4. Преглед на всички превозни средства");
         System.out.println("5. Изход");
         System.out.println();
     }
@@ -89,14 +89,14 @@ public class VehicleCRUD {
             System.out.print("Въведете ИД на работника; ");
             int employ_id =  Integer.parseInt(this.scanner.nextLine());
 
-            System.out.print("Въведете РЕГИСТРАЦИОННЕР НОМЕ превозното средство:");
+            System.out.print("Въведете РЕГИСТРАЦИОНЕН НОМЕР на превозното средство:");
             String register_number =  this.scanner.nextLine();
 
             Vehicle vehicle = new Vehicle(company_id, vehicle_type, employ_id, register_number);
             boolean isAdded = repositoryVehicle.insertVehicle(vehicle);
 
             if (isAdded) {
-                System.out.println("УСПЕШНО ДОБАВИХТЕ ПРЕВОРНО СРЕДСТВО!");
+                System.out.println("УСПЕШНО ДОБАВИХТЕ ПРЕВОЗНО СРЕДСТВО!");
             } else {
                 System.out.println("ГРЕШКА");
             }
@@ -122,7 +122,7 @@ public class VehicleCRUD {
             System.out.print("Въведете НОВО ИД на работника; ");
             int employ_id =  Integer.parseInt(this.scanner.nextLine());
 
-            System.out.print("Въведете НОВ РЕГИСТРАЦИОННЕН НОМЕР на превозното средство:");
+            System.out.print("Въведете НОВ РЕГИСТРАЦИОНЕН НОМЕР на превозното средство:");
             String register_number =  this.scanner.nextLine();
 
             Vehicle vehicle = new Vehicle(id,company_id, vehicle_type, employ_id, register_number);
@@ -146,9 +146,9 @@ public class VehicleCRUD {
 
         boolean isDeleted =  this.repositoryVehicle.deleteVehicle(client_id);
         if(isDeleted){
-            System.out.println("УСПЕШНО ИЗТРИХТЕ ПРЕВОЗНОТО СРЕДСТОВО !");
+            System.out.println("УСПЕШНО ИЗТРИХТЕ ПРЕВОЗНОТО СРЕДСТВО !");
         }else {
-            System.out.println("НЯМА НАМЕРЕНА ПРЕВОЗНО СРЕДСТОВО С ТОВА ИД: " + client_id);
+            System.out.println("НЯМА НАМЕРЕНО ПРЕВОЗНО СРЕДСТВО С ТОВА ИД: " + client_id);
         }
     }
 

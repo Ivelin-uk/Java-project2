@@ -2,7 +2,6 @@ package MODELS;
 public class Client {
     private String id;
     private String name_client;
-    private String isDebtor;
     private String company_id;
 
     public Client() throws Exception{
@@ -13,10 +12,9 @@ public class Client {
         this.setName_client(name_client);
     }
 
-    public Client(String id, String name_client, String isDebtor, String company_id) throws Exception {
+    public Client(String id, String name_client, String company_id) throws Exception {
         this.setId(id);
         this.setName_client(name_client);
-        this.setIsDebtor(isDebtor);
         this.setCompany_id(company_id);
     }
 
@@ -28,20 +26,13 @@ public class Client {
         this.company_id = company_id;
     }
 
-    public String getIsDebtor() {
-        return isDebtor;
-    }
-
-    public void setIsDebtor(String isDebtor) {
-        this.isDebtor = isDebtor;
-    }
     public String getId() {
         return id;
     }
 
     public void setId(String id) throws Exception {
         if("".equals(id)){
-            throw new Exception("Въведерте ИД");
+            throw new Exception("Въведете ИД");
         }
         this.id = id;
     }
@@ -61,11 +52,6 @@ public class Client {
     @Override
     public String toString() {
         String r = "КЛИЕНТ - ИД: " + id + ", ИМЕ НА КЛИЕНТА: " + name_client;
-        if(Integer.parseInt(isDebtor) == 0){
-            r += ", ДЛЪЖНИК: да ";
-        }else {
-            r += ", ДЛЪЖНИК: не ";
-        }
 
         return r;
     }

@@ -22,9 +22,8 @@ public class RepositoryClient extends Repository{
         while (rs.next()) {
             String client_id = rs.getString("id");
             String name_client = rs.getString("name_client");
-            String isDebtor = rs.getString("isDebtor");
             String db_company_id = rs.getString("company_id");
-            Client companyClient = new Client(client_id, name_client,isDebtor,db_company_id);
+            Client companyClient = new Client(client_id, name_client,db_company_id);
             companyClients.add(companyClient);
         }
 
@@ -41,9 +40,8 @@ public class RepositoryClient extends Repository{
         while (rs.next()) {
             String client_id = rs.getString("id");
             String name_client = rs.getString("name_client");
-            String isDebtor = rs.getString("isDebtor");
             String company_id = rs.getString("company_id");
-            Client companyClient = new Client(client_id, name_client,isDebtor,company_id);
+            Client companyClient = new Client(client_id, name_client,company_id);
             companyClients.add(companyClient);
         }
 

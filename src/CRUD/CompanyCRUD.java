@@ -24,7 +24,7 @@ public class CompanyCRUD {
 
     public void menu(){
         System.out.println();
-        System.out.println("--- Въвеждане, редактиране и изтриване на конпания ---");
+        System.out.println("--- Въвеждане, редактиране и изтриване на компания ---");
         System.out.println("1. Добавяне на компания");
         System.out.println("2. Редактиране на компания");
         System.out.println("3. Изтриване на компания");
@@ -70,7 +70,7 @@ public class CompanyCRUD {
         try {
             System.out.println("!!!!!!! Добавяне на компания !!!!!!!");
 
-            System.out.print("Въведете ИД на компануята: ");
+            System.out.print("Въведете ИД на компанията: ");
             String id = this.scanner.nextLine();
 
             System.out.print("Въведете ИМЕ на компанията: ");
@@ -108,7 +108,7 @@ public class CompanyCRUD {
             if (isUpdate) {
                 System.out.println("УСПЕШНО ОБНОВИХТЕ КОМПАНИЯТА !");
             } else {
-                System.out.println("НЯМА НАМЕРЕНА КОМПАНЯИЯ С ТОВА ИД: " + id);
+                System.out.println("НЯМА НАМЕРЕНА КОМПАНИЯ С ТОВА ИД: " + id);
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -183,7 +183,7 @@ public class CompanyCRUD {
         }
 
         result += "\n";
-        result += " -- ПРОВОРНИ СТРЕДСТВА : ";
+        result += " -- ПРЕВОЗНИ СРЕДСТВА : ";
         result += "\n";
 
         ArrayList<Vehicle> vehicles =  this.repositoryVehicle.getVehicleOnCompany(id);
